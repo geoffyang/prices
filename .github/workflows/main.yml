@@ -26,6 +26,3 @@ jobs:
       run: heroku container:push -a hospital-prices web
     - name: release 
       run: heroku container:release -a hospital-prices web
-  
-
-     
