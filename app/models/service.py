@@ -1,6 +1,7 @@
 from .db import db
 from datetime import datetime
 
+
 class Service(db.Model):
     __tablename__ = 'services'
 
@@ -8,13 +9,36 @@ class Service(db.Model):
 
     billing_code = db.Column(db.Integer, nullable=False)
     cpt_code = db.Column(db.String(10), nullable=True)
-
     service_description = db.Column(db.String(140), nullable=False)
-
     list_price = db.Column(db.NUMERIC(9, 2), nullable=True)
     discounted_price = db.Column(db.NUMERIC(9, 2), nullable=True)
     domain = db.Column(db.String(20), nullable=True)
     subdomain = db.Column(db.String(20), nullable=True)
+
+    hospital_id = db.Column(db.Integer, db.ForeignKey(
+        "hospitals.id",
+        ondelete='CASCADE'),
+        nullable=False
+    )
+
     status = db.Column(db.String(20))
     # user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-    created_at=db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow)
+
+    hospital = db.relationship('Hospital', backref=db.backref(
+        "services", passive_deletes=True))
+
+    def to_dict(self):
+        return{
+            "id": self.id,
+            "billing_code": self.billing_code,
+            "cpt_code": self.cpt_code,
+            "service_description": self.service_description,
+            "list_price": self.list_price,
+            "discounted_price": self.discounted_price,
+            "domain": self.domain,
+            "subdomain": self.subdomain,
+            "hospital_id": self.hospital_id,
+            "status": self.status
+        }

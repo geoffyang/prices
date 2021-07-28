@@ -18,6 +18,6 @@ class Collection(db.Model):
         return{
             "id": self.id,
             "name": self.name,
-            "service_id": self.service_id,
+            # "services": [s.to_dict() for s in self.service_id],
             "user_id": self.user_id
         }

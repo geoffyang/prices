@@ -6,6 +6,7 @@ def seed_services():
                  service_description="ADM SARSCOV2 30MCG/0.3ML 1ST",
                  list_price=180.00,
                  discounted_price=40.00,
+                 hospital_id=1,
                  domain="testing",
                  subdomain="viral",
                  status="proposed"
@@ -15,6 +16,7 @@ def seed_services():
                  service_description="COVID19 ANTIBODY MULT W/TITER",
                  list_price=240.00,
                  discounted_price=42.13,
+                 hospital_id=1,
                  domain="testing",
                  subdomain="viral",
                  status="proposed")
