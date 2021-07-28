@@ -1,5 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
+from .collections import seed_collections, undo_collections
+from .services import seed_services, undo_services
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -10,6 +12,8 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
+    seed_services()
+    seed_collections()
     # Add other seed functions here
 
 

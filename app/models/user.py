@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    is_admin = db.Column(db.String, nullable=False, default="False")
     hashed_password = db.Column(db.String(255), nullable=False)
 
     @property
@@ -28,3 +29,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+
+    collections = db.relationship("Collection", backref="user", passive_deletes=True)
+    # services = db.relationship("Service", backref="user", lazy="dynamic")
+
