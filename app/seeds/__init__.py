@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .collections import seed_collections, undo_collections
 from .services import seed_services, undo_services
 from .hospitals import seed_hospitals, undo_hospitals
+from .comments import seed_comments, undo_comments
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -16,6 +17,7 @@ def seed():
     seed_hospitals()
     seed_services()
     seed_collections()
+    seed_comments()
     # Add other seed functions here
 
 
@@ -26,4 +28,5 @@ def undo():
     undo_services()
     undo_collections()
     undo_hospitals()
+    undo_comments()
     # Add other undo functions here

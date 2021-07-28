@@ -15,15 +15,17 @@ class Service(db.Model):
     domain = db.Column(db.String(20), nullable=True)
     subdomain = db.Column(db.String(20), nullable=True)
 
-    hospital_id = db.Column(db.Integer, db.ForeignKey(
-        "hospitals.id",
-        ondelete='CASCADE'),
-        nullable=False
-    )
+    # FK
+    hospital_id = db.Column(db.Integer,
+                            db.ForeignKey("hospitals.id",
+                                          ondelete='CASCADE'),
+                            nullable=False
+                            )
+    # user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
 
     status = db.Column(db.String(20))
-    # user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-    created_at = db.Column(db.DateTime, nullable=False,
+    created_at = db.Column(db.DateTime,
+                           nullable=False,
                            default=datetime.utcnow)
 
     hospital = db.relationship('Hospital', backref=db.backref(
