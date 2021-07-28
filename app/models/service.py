@@ -22,12 +22,12 @@ class Service(db.Model):
                             nullable=False
                             )
     # user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-
     status = db.Column(db.String(20))
     created_at = db.Column(db.DateTime,
                            nullable=False,
                            default=datetime.utcnow)
 
+    #relationships
     hospital = db.relationship('Hospital', backref=db.backref(
         "services", passive_deletes=True))
 

@@ -6,13 +6,17 @@ class Collection(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False, default="My Collection")
+
+    #FK:
     service_id = db.Column(db.Integer, db.ForeignKey(
         "services.id"), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
         "users.id", ondelete="CASCADE"), nullable=False)
 
+    #relationship
     services = db.relationship(
         'Service', backref='collection')
+
 
     def to_dict(self):
         return{

@@ -12,6 +12,11 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    #relationships
+    collections = db.relationship("Collection", backref="user", passive_deletes=True)
+    # services = db.relationship("Service", backref="user", lazy="dynamic")
+
+
     @property
     def password(self):
         return self.hashed_password
@@ -30,6 +35,4 @@ class User(db.Model, UserMixin):
             'email': self.email
         }
 
-    collections = db.relationship("Collection", backref="user", passive_deletes=True)
-    # services = db.relationship("Service", backref="user", lazy="dynamic")
 
