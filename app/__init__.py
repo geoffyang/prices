@@ -1,3 +1,4 @@
+from app.models.collection import Collection
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
@@ -39,6 +40,14 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
+# make flask shell more useful
+# @app.shell_context_processor
+# def make_shell_context():
+#     return{
+#         'db':db,
+#         'User':User,
+#         'Collection':Collection,
+#     }
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.

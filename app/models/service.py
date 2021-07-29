@@ -29,7 +29,7 @@ class Service(db.Model):
 
     #relationships
     hospital = db.relationship('Hospital', backref=db.backref(
-        "services", passive_deletes=True))
+        "services", passive_deletes=True), uselist=False)
 
     def to_dict(self):
         return{
