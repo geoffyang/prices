@@ -1,5 +1,15 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import login_required
+from app.models import User, db, Collection
+
+collection_routes = Blueprint('collections', __name__)
+
+
+# GET /api/collections/
+@collection_routes.route('/')
+@login_required
+def getCollections():
+    collections = Collection.query.filter(Collection.user_id == current_user.id).all()
+
+
+# GET /api/collections/<id>
