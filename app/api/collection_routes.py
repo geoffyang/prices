@@ -24,17 +24,20 @@ def getCollection(id):
 
 # POST /api/collections/
 @collection_routes.route("/", methods=["POST"])
-@login_required
+# @login_required
 def postCollection():
     form = NewCollection()
-    # form['csrf_token'].data = request.cookies['csrf_token']
-    # print("I AM HEREEEEEEEEEEEEEEEEEEEEEEEEEE", form.data)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print("I AM HEREEEEEEEEEEEEEEEEEEEEEEEEEE", form.data)
+
     if form.validate_on_submit():
         print("does this ever validate with postman??????????????????")
+
         new_collection = Collection(
         name=form.data['name'],
-        user_id=current_user.id
+        user_id=1
         )
+
         db.session.add(new_collection)
         db.session.commit()
         return "success"

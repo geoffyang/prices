@@ -11,8 +11,7 @@ export default function MakeCollectionForm() {
 
     const formSubmitFunc = async (e) => {
         e.preventDefault();
-        const errorResponse = await dispatch(postCollection(collectionName))
-        const errorData = errorResponse.json()
+        const errorData = await dispatch(postCollection(collectionName))
         if (errorData) setErrors(errorData)
         setCollectionName("")
     }

@@ -5,5 +5,5 @@ from wtforms.validators import DataRequired
 
 class NewCollection(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    submit = SubmitField()
+    # submit = SubmitField()
 

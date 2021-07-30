@@ -30,14 +30,16 @@ export const postCollection = (name) => async (dispatch) => {
             'Content-Type':'application/json'
         },
         body: JSON.stringify({
-            name
+            name:name
         })
     })
 
     if (response.ok) {
         const data = await response.json();
         dispatch(updateCollection(data))
+        return data;
     }
+    console.log("unhandled promise error >>>>>>>>>>>");
 }
 
 export default function reducer(state = {}, action) {
