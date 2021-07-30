@@ -33,7 +33,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            "collections":[c.to_dict for c in self.collections]
+            "collections":[c.to_dict() for c in self.collections],
+            # "collections":self.collections
         }
 
 
