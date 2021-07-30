@@ -1,8 +1,15 @@
-const SET_COLLECTION = "collection/SET_COLLECTION"
+const LOAD_COLLECTIONS = "collection/LOAD_COLLECTIONS"
+const UPDATE_COLLECTION = "collection/UPDATE_COLLECTION"
 
-const setCollection = (collections) => ({
-    type: SET_COLLECTION,
+
+const loadCollection = (collections) => ({
+    type: LOAD_COLLECTIONS,
     collections:collections
+})
+
+const updateCollection = collection => ({
+    type: UPDATE_COLLECTION,
+    collection:collection
 })
 
 export const getCollection = () => async (dispatch) => {
@@ -12,27 +19,36 @@ export const getCollection = () => async (dispatch) => {
         if (data.errors) {
             return;
         }
-        dispatch(setCollection(data))
+        dispatch(loadCollection(data))
     }
 }
 
-export const addCollection = (name, user_id) => async (dispatch) => {
-    const response = await fetch('/api/collections', {
+export const postCollection = (name) => async (dispatch) => {
+    const response = await fetch('/api/collections/', {
         method:'POST',
         headers: {
             'Content-Type':'application/json'
         },
         body: JSON.stringify({
-            name, user_id
+            name
         })
     })
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(updateCollection(data))
+    }
 }
 
-
 export default function reducer(state = {}, action) {
+    let newState = {}
     switch (action.type) {
-        case SET_COLLECTION:
+        case LOAD_COLLECTIONS:
             return { collections: action.collections }
+        case UPDATE_COLLECTION:
+            newState = Object.assign({}, state);
+            newState["tester"] = action.collection;
+            return newState
         default:
             return state;
 

@@ -1,29 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from "react-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from 'react';
+// import ReactDOM from "react-dom";
+import { useDispatch } from "react-redux";
+import { postCollection } from '../store/collection';
 
 
-export default function MakeCollection() {
-
+export default function MakeCollectionForm() {
+    const [errors, setErrors] = useState([])
+    const [collectionName, setCollectionName] = useState("")
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user)
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('/api/users/');
-            const responseData = await response.json();
-            setUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
+    const formSubmitFunc = async (e) => {
+        e.preventDefault();
+        const errorResponse = await dispatch(postCollection(collectionName))
+        const errorData = errorResponse.json()
+        if (errorData) setErrors(errorData)
+        setCollectionName("")
+    }
+
+    const updateCollectionName = e => setCollectionName(e.target.value)
+
 
     return (
 
-
-        <div id="buy-panel">
-
-        </div>
-
-
+        <form onSubmit={formSubmitFunc}>
+            <div>
+                {errors.map((err, ind) => (
+                    <div key={ind}>{err}</div>
+                ))}
+            </div>
+            <div>
+                <label>Name your collection </label>
+                <input
+                    type='text'
+                    name='name'
+                    placeholder='Your Collection Name'
+                    onChange={updateCollectionName}
+                    value={collectionName}></input>
+            </div>
+                <button type='submit'>Submit</button>
+        </form>
     )
 }

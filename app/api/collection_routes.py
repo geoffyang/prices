@@ -41,10 +41,10 @@ def postCollection():
     return "bad data"
 
 
-
+# Hitting database with hardcoded data saves fine
     # new_collection = Collection(
-    # name="testing with Ryan",
-    # user_id=current_user.id
+        # name="testing with Ryan",
+        # user_id=current_user.id
     # )
     # db.session.add(new_collection)
     # db.session.commit()
