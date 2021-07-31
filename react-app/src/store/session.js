@@ -4,7 +4,7 @@ const REMOVE_USER = 'session/REMOVE_USER';
 
 const setUser = (user) => ({
   type: SET_USER,
-  payload: user
+  user
 });
 
 const removeUser = () => ({
@@ -24,7 +24,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-
+    console.log("line 277777777777777777", data);
     dispatch(setUser(data));
   }
 }
@@ -97,10 +97,12 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
+export default function reducer(state = initialState, {type, user}) {
+  switch (type) {
     case SET_USER:
-      return { user: action.payload }
+      return {
+        user: user
+      }
     case REMOVE_USER:
       return { user: null }
     default:

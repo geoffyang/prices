@@ -4,12 +4,12 @@ const UPDATE_COLLECTION = "collection/UPDATE_COLLECTION"
 
 const loadCollection = (collections) => ({
     type: LOAD_COLLECTIONS,
-    collections:collections
+    collections: collections
 })
 
 const updateCollection = collection => ({
     type: UPDATE_COLLECTION,
-    collection:collection
+    collection: collection
 })
 
 export const getCollection = () => async (dispatch) => {
@@ -25,12 +25,12 @@ export const getCollection = () => async (dispatch) => {
 
 export const postCollection = (name) => async (dispatch) => {
     const response = await fetch('/api/collections/', {
-        method:'POST',
+        method: 'POST',
         headers: {
-            'Content-Type':'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name:name
+            name: name
         })
     })
 
@@ -42,18 +42,16 @@ export const postCollection = (name) => async (dispatch) => {
     console.log("unhandled promise error >>>>>>>>>>>");
 }
 
-export default function reducer(state = {}, action) {
+export default function reducer(state = {}, {type, collection, collections}) {
     let newState = {}
-    switch (action.type) {
+    switch (type) {
         case LOAD_COLLECTIONS:
-            return { collections: action.collections }
+            return { collections: collections }
         case UPDATE_COLLECTION:
             newState = Object.assign({}, state);
-            newState["tester"] = action.collection;
+            newState["tester"] = collection;
             return newState
         default:
             return state;
-
     }
-
 }
