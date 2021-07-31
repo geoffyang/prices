@@ -11,7 +11,9 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const initialState = { user: null };
+const initialState = {
+  user: null,
+};
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -24,7 +26,6 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-    console.log("line 277777777777777777", data);
     dispatch(setUser(data));
   }
 }

@@ -28,8 +28,6 @@ def getCollection(id):
 def postCollection():
     form = NewCollection()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("I AM HEREEEEEEEEEEEEEEEEEEEEEEEEEE", type(request))
-
 
     if form.validate_on_submit():
         new_collection = Collection(

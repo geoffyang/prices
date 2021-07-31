@@ -28,7 +28,7 @@ export default function MakeCollectionForm() {
                 ))}
             </div>
             <div>
-                <label>Name your collection </label>
+                <label>Create a collection </label>
                 <input
                     type='text'
                     name='name'
