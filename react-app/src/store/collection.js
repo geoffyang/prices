@@ -50,7 +50,8 @@ export const UnloadCollections = ()  =>  ({
 const initialState = {
     all: {},
     current: null,
-    loaded: false
+    allLoaded: false,
+    singleLoaded:false
 }
 
 export default function reducer(state = initialState, { type, collection, collections, id }) {
@@ -59,7 +60,7 @@ export default function reducer(state = initialState, { type, collection, collec
             return {
                 ...state,
                 all: collections,
-                loaded: true,
+                allLoaded: true,
             }
         case LOAD_COLLECTION:
             return {
@@ -67,7 +68,7 @@ export default function reducer(state = initialState, { type, collection, collec
                 all: {
                     ...state.all
                 },
-                loaded: true,
+                singleLoaded: true,
                 current:id
             }
         case UPDATE_COLLECTION:
@@ -78,7 +79,7 @@ export default function reducer(state = initialState, { type, collection, collec
                     [collection.id]:collection
                 },
                 current: id,
-                loaded:true
+                singleLoaded:true
             }
         case UNLOAD_COLLECTIONS:
             return {
@@ -87,7 +88,8 @@ export default function reducer(state = initialState, { type, collection, collec
                     ...initialState.all
                 },
                 current: null,
-                loaded: false,
+                allLoaded: false,
+                singleLoaded: false
             }
         case UNLOAD_CURRENT_COLLECTION:
             return {
@@ -96,7 +98,7 @@ export default function reducer(state = initialState, { type, collection, collec
                     ...state.all
                 },
                 current: null,
-                loaded: true,
+                singleLoaded: false,
             }
         default:
             return state;
