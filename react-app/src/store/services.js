@@ -6,7 +6,7 @@ const UNLOAD_CURRENT_SERVICE = "service/UNLOAD_ONE"
 
 const loadServices = (services) => ({
     type: LOAD_SERVICES,
-    collections: services
+    services: services
 })
 
 const updateService = service => ({
@@ -53,7 +53,7 @@ export const PostService = (name) => async dispatch => {
 }
 
 export const UnloadServices = () => ({
-    type: UNLOAD_ServiceS
+    type: UNLOAD_SERVICES
 })
 
 
