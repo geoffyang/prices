@@ -3,8 +3,6 @@ const UPDATE_COLLECTION = "collection/UPDATE_COLLECTION"
 const UNLOAD_COLLECTIONS = "collection/UNLOAD_ALL"
 const UNLOAD_CURRENT_COLLECTION = "collection/UNLOAD_ONE"
 
-
-
 const loadCollections = (collections) => ({
     type: LOAD_COLLECTIONS,
     collections: collections
@@ -33,40 +31,53 @@ export const postCollection = (name) => async dispatch => {
         body: JSON.stringify({ name: name })
     })
     if (response.ok) {
-        const data = await response.json();
-        dispatch(updateCollection(data))
-        return data;
+        const newCollection = await response.json();
+        dispatch(updateCollection(newCollection))
     }
 }
 
 const initialState = {
-    collections: {},
+    all: {},
     current: null,
     loaded: false
 }
 
 export default function reducer(state = initialState, { type, collection, collections }) {
-    let newState = {}
     switch (type) {
         case LOAD_COLLECTIONS:
             return {
                 ...state,
-                collections: collections,
+                all: collections,
                 loaded: true,
                 current: null
             }
         case UPDATE_COLLECTION:
-            newState = Object.assign({}, state);
-            newState["tester"] = collection;
-            return newState
+            return {
+                ...state,
+                all: {
+                    ...state.all,
+                    [collection.id]:collection
+                },
+                current: collection,
+                loaded:true
+            }
         case UNLOAD_COLLECTIONS:
             return {
                 ...initialState,
-                collections: {
-                    ...initialState.collections
+                all: {
+                    ...initialState.all
                 },
                 current: null,
                 loaded: false,
+            }
+        case UNLOAD_CURRENT_COLLECTION:
+            return {
+                ...state,
+                all: {
+                    ...state.all
+                },
+                current: null,
+                loaded: true,
             }
         default:
             return state;

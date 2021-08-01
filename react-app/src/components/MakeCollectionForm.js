@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 // import ReactDOM from "react-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postCollection } from '../store/collection';
 
 
 export default function MakeCollectionForm() {
+    const dispatch = useDispatch();
     const [errors, setErrors] = useState([])
     const [collectionName, setCollectionName] = useState("")
-    const dispatch = useDispatch();
 
     const formSubmitFunc = async (e) => {
         e.preventDefault();
-        const errorData = await dispatch(postCollection(collectionName))
-        if (errorData) setErrors(errorData)
+        await dispatch(postCollection(collectionName))
         setCollectionName("")
     }
 
@@ -21,17 +20,18 @@ export default function MakeCollectionForm() {
 
     return (
 
-        <form onSubmit={formSubmitFunc}>
-            <div>
+        <form onSubmit={formSubmitFunc} style={{width:"100%"}}>
+            {/* <div>
                 {errors.map((err, ind) => (
                     <div key={ind}>{err}</div>
                 ))}
-            </div>
+            </div> */}
             <div>
                 <label>Create a collection </label>
                 <input
                     type='text'
                     name='name'
+                    autoFocus
                     placeholder='Your Collection Name'
                     onChange={updateCollectionName}
                     value={collectionName}></input>
