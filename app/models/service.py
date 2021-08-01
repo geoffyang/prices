@@ -5,7 +5,7 @@ from .service_collections import service_collections
 
 class Service(db.Model):
     __tablename__ = 'services'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     billing_code = db.Column(db.Integer, nullable=False)
     cpt_code = db.Column(db.String(10), nullable=True)

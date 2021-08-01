@@ -26,6 +26,5 @@ class Collection(db.Model):
         return{
             "id": self.id,
             "name": self.name,
-            # "services": [s.to_dict() for s in self.service_id],
             "user_id": self.user_id
         }
