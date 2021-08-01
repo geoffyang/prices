@@ -1,22 +1,26 @@
 from .db import db
+from .service_collections import service_collections
 
 
 class Collection(db.Model):
     __tablename__ = 'collections'
-
+    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False, default="My Collection")
+    # service_id = db.Column(db.Integer, db.ForeignKey("services.id"), nullable=True)
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False
+    )
 
-    #FK:
-    service_id = db.Column(db.Integer, db.ForeignKey(
-        "services.id"), nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(
-        "users.id", ondelete="CASCADE"), nullable=False)
-
-    #relationship
+    # relationships
+    # services = db.relationship('Service', backref='collection')
     services = db.relationship(
-        'Service', backref='collection')
-
+        "Service",
+        secondary=service_collections,
+        back_populates="collections"
+    )
 
     def to_dict(self):
         return{
