@@ -1,0 +1,8 @@
+.list__collection{
+    height:3rem;
+    padding-left:1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border:2px solid black;
+}

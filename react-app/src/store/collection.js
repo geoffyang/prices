@@ -1,4 +1,5 @@
 const LOAD_COLLECTIONS = "collection/LOAD_COLLECTIONS"
+const LOAD_COLLECTION = "collection/LOAD_COLLECTION"
 const UPDATE_COLLECTION = "collection/UPDATE_COLLECTION"
 const UNLOAD_COLLECTIONS = "collection/UNLOAD_ALL"
 const UNLOAD_CURRENT_COLLECTION = "collection/UNLOAD_ONE"
@@ -13,7 +14,8 @@ const updateCollection = collection => ({
     collection: collection
 })
 
-export const getCollections = () => async (dispatch) => {
+
+export const GetCollections = () => async (dispatch) => {
     const response = await fetch('/api/collections/')
     if (response.ok) {
         const data = await response.json();
@@ -24,7 +26,12 @@ export const getCollections = () => async (dispatch) => {
     }
 }
 
-export const postCollection = (name) => async dispatch => {
+export const GetCollection = id => ({
+    type: LOAD_COLLECTION,
+    id
+})
+
+export const PostCollection = (name) => async dispatch => {
     const response = await fetch('/api/collections/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -36,20 +43,32 @@ export const postCollection = (name) => async dispatch => {
     }
 }
 
+export const UnloadCollections = ()  =>  ({
+    type: UNLOAD_COLLECTIONS
+})
+
 const initialState = {
     all: {},
     current: null,
     loaded: false
 }
 
-export default function reducer(state = initialState, { type, collection, collections }) {
+export default function reducer(state = initialState, { type, collection, collections, id }) {
     switch (type) {
         case LOAD_COLLECTIONS:
             return {
                 ...state,
                 all: collections,
                 loaded: true,
-                current: null
+            }
+        case LOAD_COLLECTION:
+            return {
+                ...state,
+                all: {
+                    ...state.all
+                },
+                loaded: true,
+                current:id
             }
         case UPDATE_COLLECTION:
             return {
@@ -58,7 +77,7 @@ export default function reducer(state = initialState, { type, collection, collec
                     ...state.all,
                     [collection.id]:collection
                 },
-                current: collection,
+                current: id,
                 loaded:true
             }
         case UNLOAD_COLLECTIONS:
