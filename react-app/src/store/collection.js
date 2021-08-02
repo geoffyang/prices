@@ -3,6 +3,7 @@ const LOAD_COLLECTION = "collection/LOAD_COLLECTION"
 const UPDATE_COLLECTION = "collection/UPDATE_COLLECTION"
 const UNLOAD_COLLECTIONS = "collection/UNLOAD_ALL"
 const UNLOAD_CURRENT_COLLECTION = "collection/UNLOAD_ONE"
+const REMOVE_COLLECTION = "collection/REMOVE_ONE"
 
 const loadCollections = (collections) => ({
     type: LOAD_COLLECTIONS,
@@ -14,6 +15,10 @@ const updateCollection = collection => ({
     collection: collection
 })
 
+const removeCollection = id => ({
+    type: REMOVE_COLLECTION,
+    id
+})
 
 export const GetCollections = () => async (dispatch) => {
     const response = await fetch('/api/collections/')
@@ -43,14 +48,25 @@ export const PostCollection = (name) => async dispatch => {
     }
 }
 
-export const UnloadCollections = ()  =>  ({
+export const UnloadCollections = () => ({
     type: UNLOAD_COLLECTIONS
 })
+
+export const DeleteCollection = id => async dispatch => {
+    await fetch(`/api/collections/${id}/`, {
+        method: "DELETE",
+        headers: { 'Content-Type': 'application/json' },
+    })
+
+    dispatch(removeCollection(id))
+
+}
 
 const initialState = {
     all: {},
     current: null,
-    loaded: false
+    allLoaded: false,
+    singleLoaded: false
 }
 
 export default function reducer(state = initialState, { type, collection, collections, id }) {
@@ -59,7 +75,7 @@ export default function reducer(state = initialState, { type, collection, collec
             return {
                 ...state,
                 all: collections,
-                loaded: true,
+                allLoaded: true,
             }
         case LOAD_COLLECTION:
             return {
@@ -67,18 +83,18 @@ export default function reducer(state = initialState, { type, collection, collec
                 all: {
                     ...state.all
                 },
-                loaded: true,
-                current:id
+                singleLoaded: true,
+                current: id
             }
         case UPDATE_COLLECTION:
             return {
                 ...state,
                 all: {
                     ...state.all,
-                    [collection.id]:collection
+                    [collection.id]: collection
                 },
                 current: id,
-                loaded:true
+                singleLoaded: true
             }
         case UNLOAD_COLLECTIONS:
             return {
@@ -87,7 +103,8 @@ export default function reducer(state = initialState, { type, collection, collec
                     ...initialState.all
                 },
                 current: null,
-                loaded: false,
+                allLoaded: false,
+                singleLoaded: false
             }
         case UNLOAD_CURRENT_COLLECTION:
             return {
@@ -96,7 +113,29 @@ export default function reducer(state = initialState, { type, collection, collec
                     ...state.all
                 },
                 current: null,
-                loaded: true,
+                singleLoaded: false,
+            }
+        case REMOVE_COLLECTION:
+            if (state.current === id) {
+                delete state.all[id]
+                return {
+                    ...state,
+                    all: {
+                        ...state.all
+                    },
+                    current: null,
+                    singleLoaded: false
+                }
+            } else {
+                delete state.all[id]
+                return {
+                    ...state,
+                    all: {
+                        ...state.all
+                    },
+                    current: state.current,
+                    singleLoaded: state.singleLoaded
+                }
             }
         default:
             return state;

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { PostCollection } from '../store/collection';
 
 
-export default function MakeCollectionForm() {
+export default function CollectionForm() {
     const dispatch = useDispatch();
     // const [errors, setErrors] = useState([])
     const [collectionName, setCollectionName] = useState("")
