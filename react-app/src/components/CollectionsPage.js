@@ -27,7 +27,7 @@ export default function CollectionsPage() {
                 {
                     (singleLoaded
                         ? (<h3>{all[currentId].name} </h3>)
-                        : <h1>Load a collection from the list</h1>
+                        : <h1>Choose a collection from the list</h1>
                     )
                 }
             </div>

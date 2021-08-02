@@ -4,7 +4,7 @@ from .service_collections import service_collections
 
 class Collection(db.Model):
     __tablename__ = 'collections'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False, default="My Collection")
     # service_id = db.Column(db.Integer, db.ForeignKey("services.id"), nullable=True)
@@ -26,5 +26,6 @@ class Collection(db.Model):
         return{
             "id": self.id,
             "name": self.name,
-            "user_id": self.user_id
+            "user_id": self.user_id,
+            "services": {s.id:s.to_dict() for s in self.services}
         }
