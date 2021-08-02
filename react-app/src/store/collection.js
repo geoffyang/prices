@@ -93,8 +93,8 @@ export default function reducer(state = initialState, { type, collection, collec
                     ...state.all,
                     [collection.id]: collection
                 },
-                current: id,
-                singleLoaded: true
+                current: state.current,
+                singleLoaded: state.singleLoaded
             }
         case UNLOAD_COLLECTIONS:
             return {

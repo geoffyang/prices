@@ -15,7 +15,7 @@ def getCollections():
 
 
 # POST /api/collections/
-@collection_routes.route("/", method=["POST"])
+@collection_routes.route("/", methods=["POST"])
 @login_required
 def postCollection():
     form = NewCollection()

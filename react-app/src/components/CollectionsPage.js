@@ -1,13 +1,14 @@
 import CollectionForm from "./CollectionForm"
 import "./CollectionsPage.css"
 import CollectionsList from "./CollectionsList"
-import {  useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 export default function CollectionsPage() {
 
-    const currentCollectionId = useSelector(state => state.collections.current) || null
+    const currentId = useSelector(state => state.collections.current) || null
     // const collections = useSelector(state => state.collections.all) || null
     const singleLoaded = useSelector(state => state.collections.singleLoaded)
+    const all = useSelector(state => state.collections.all)
 
     return (
         <div id="collections__container">
@@ -22,11 +23,11 @@ export default function CollectionsPage() {
             </div >
 
             <div id="collections__right">
-                <h3>{currentCollectionId} </h3>
+
                 {
                     (singleLoaded
-                        ? (<h1>true</h1>)
-                        : <h1>false</h1>
+                        ? (<h3>{all[currentId].name} </h3>)
+                        : <h1>Load a collection from the list</h1>
                     )
                 }
             </div>
