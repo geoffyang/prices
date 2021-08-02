@@ -1,12 +1,12 @@
 import CollectionForm from "./CollectionForm"
 import "./CollectionsPage.css"
 import CollectionsList from "./CollectionsList"
-import { useDispatch, useSelector } from "react-redux"
+import {  useSelector } from "react-redux"
 
 export default function CollectionsPage() {
 
     const currentCollectionId = useSelector(state => state.collections.current) || null
-    const collections = useSelector(state => state.collections.all) || null
+    // const collections = useSelector(state => state.collections.all) || null
     const singleLoaded = useSelector(state => state.collections.singleLoaded)
 
     return (

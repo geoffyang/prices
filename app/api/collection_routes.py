@@ -15,10 +15,11 @@ def getCollections():
 
 
 # POST /api/collections/
-@collection_routes.route("/", methods=["POST"])
+@collection_routes.route("/", methods=["post"])
 @login_required
 def postCollection():
     form = NewCollection()
+    print("PRINTING REQUEST DATA", request.json)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_collection = Collection(
@@ -35,9 +36,16 @@ def postCollection():
     return "bad data"
 
 
-# GET /api/collections/<id>
-@collection_routes.route("/<id>")
+# GET DELETE /api/collections/<id>/
+@collection_routes.route("/<id>/", methods=['GET', 'DELETE'])
 @login_required
 def getCollection(id):
+
     collection = Collection.query.filter(Collection.id == id).one()
-    return collection.to_dict()
+    print("found collection", collection)
+    if request.method == 'GET':
+        return collection.to_dict()
+    elif request.method == 'DELETE':
+        db.session.delete(collection)
+        db.session.commit()
+        return {"deleted":id}
