@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { GetCollections, GetCollection, UnloadCollections , DeleteCollection} from "../store/collection"
-import { BsTrash } from 'react-icons/bs';
+import { GetCollections, GetCollection, UnloadCollections, DeleteCollection } from "../store/collection"
+import { BsTrash, BsPencil } from 'react-icons/bs';
 import './CollectionsList.css'
 
 export default function CollectionsList() {
     const dispatch = useDispatch();
-    const allCollections = useSelector(state=>state.collections.all)
+    const allCollections = useSelector(state => state.collections.all)
 
     useEffect(() => {
         dispatch(GetCollections());
@@ -17,8 +17,8 @@ export default function CollectionsList() {
         dispatch(GetCollection(id))
     }
 
-    const deleteFunc = id => {
-        dispatch(DeleteCollection(id))
+    const editFunc = id => {
+        // to do.
     }
 
     return (
@@ -29,10 +29,16 @@ export default function CollectionsList() {
                     onClick={() => { loadCollection(c.id) }}
                 >
                     {c.name} ------ {c.id}
-                    <BsTrash onClick={(e) => {
-                        e.stopPropagation()
-                        deleteFunc(c.id)
-                    }} />
+                    <div id="list__collection-icons">
+                        <BsPencil onClick={(e) => {
+                            e.stopPropagation()
+                            editFunc(c.id)
+                        }} />
+                        <BsTrash onClick={(e) => {
+                            e.stopPropagation()
+                            dispatch(DeleteCollection(c.id))
+                        }} />
+                    </div>
                 </div>
             )
 
