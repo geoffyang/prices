@@ -38,7 +38,7 @@ export const GetCollection = id => ({
 
 export const PostCollection = (name) => async dispatch => {
     const response = await fetch('/api/collections/', {
-        method: 'post',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: name })
     })
