@@ -113,7 +113,7 @@ def getServicesInCollection(collection_id):
 
 
 # POST DELETE /api/collections/<id>/services/<id>
-@collection_routes.route('/<collection_id>/services/<service_id>', methods=['POST', 'DELETE'])
+@collection_routes.route('/<collection_id>/services/<service_id>/', methods=['POST', 'DELETE'])
 @login_required
 def serviceInCollection(collection_id, service_id):
     if request.method == "POST":  # add service to collection
@@ -122,9 +122,9 @@ def serviceInCollection(collection_id, service_id):
         db.session.commit()
         return {}
     elif request.method == 'DELETE': # delete service
-        service = session.query(service_collections) \
-                         .filter(service_collections.collection_id==collection_id) \
-                         .filter(service_collections.service_id==service_id).one()
+        service = db.session.query(service_collections).filter(service_collections.collection_id==collection_id).filter(service_collections.service_id==service_id).one_or_none()
+        print(">>>>>>>>>>service to delete", service)
         db.session.delete(service)
         db.session.commit()
+
         return {"success":f"{service_id} deleted"}
