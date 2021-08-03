@@ -122,17 +122,8 @@ def serviceInCollection(collection_id, service_id):
         db.session.commit()
         return {}
     elif request.method == 'DELETE':
-        # service = db.session.query(service_collections) \
-        #     .filter(service_collections.collection_id==collection_id) \
-        #     .filter(service_collections.service_id==service_id) \
-        #     .one_or_none()
-        # # print(">>>>>>>>>>service to delete", service)
-        # db.session.delete(service)
-
         collection = Collection.query.get(collection_id)
         service = Service.query.get(service_id)
         collection.services.remove(service)
-
         db.session.commit()
-
         return {"success":f"{service_id} deleted"}

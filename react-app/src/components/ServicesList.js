@@ -13,7 +13,7 @@ export default function Services() {
     const servicesLoaded = useSelector(state => state.collections.servicesLoaded)
 
     function redirect_single_service(id) {
-        // history.push()
+        history.push(`/services/${id}/`)
         return {}
     }
     return (
