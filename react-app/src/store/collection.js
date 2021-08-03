@@ -5,6 +5,7 @@ const UNLOAD_COLLECTIONS = "collection/UNLOAD_ALL"
 const UNLOAD_CURRENT_COLLECTION = "collection/UNLOAD_ONE"
 const REMOVE_COLLECTION = "collection/REMOVE_ONE"
 const LOAD_SERVICES = 'services/LOAD_SERVICES'
+const REMOVE_SERVICE = 'services/REMOVE_SERVICE'
 const UPDATE_SERVICES = 'services/UPDATE_SERVICES'
 
 const loadCollections = (collections) => ({
@@ -57,7 +58,7 @@ export const UnloadCollections = () => ({
 export const DeleteCollection = id => async dispatch => {
     await fetch(`/api/collections/${id}/`, {
         method: "DELETE",
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
     })
 
     dispatch(removeCollection(id))
@@ -67,7 +68,6 @@ export const GetServices = collectionId => async dispatch => {
     const response = await fetch(`/api/collections/${collectionId}/services/`)
     if (response.ok) {
         const services = await response.json();
-        console.log(">>>>>>>", services)
         dispatch(LoadServices(services, collectionId))
     }
 }
@@ -78,19 +78,32 @@ const LoadServices = (services, id) => ({
     id
 })
 
+export const DeleteService = (collectionId, serviceId) => async dispatch => {
+    await fetch(`/api/collections/${collectionId}/services/${serviceId}/`, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+    })
+    dispatch(removeService(serviceId))
+}
+
+const removeService = id => ({
+    type: REMOVE_SERVICE,
+    id
+})
+
 const initialState = {
     all: {},
     allLoaded: false,
     current: null,
     services: {},
-    servicesLoaded:false,
+    servicesLoaded: false,
     singleLoaded: false
 }
 
 export default function reducer(state = initialState, { type, collection, collections, id, service, services }) {
     switch (type) {
         case LOAD_SERVICES:
-            if (Object.keys(services).length > 0 ) {
+            if (Object.keys(services).length > 0) {
                 return {
                     ...state,
                     all: { ...state.all },
@@ -103,9 +116,25 @@ export default function reducer(state = initialState, { type, collection, collec
             return {
                 ...state,
                 all: { ...state.all },
-                services: {},
+                services: null,
                 servicesLoaded: false,
-                singleLoaded: false,
+                singleLoaded: true,
+                current: id
+            }
+        case REMOVE_SERVICE:
+            delete state.services[id]
+            if (Object.keys(state.services).length > 0) {
+                return {
+                    ...state,
+                    all: { ...state.all },
+                    services: { ...state.services }
+                }
+            }
+            return {
+                ...state,
+                all: { ...state.all },
+                services: null,
+                servicesLoaded: false,
                 current: id
             }
         case LOAD_COLLECTIONS:
@@ -113,6 +142,7 @@ export default function reducer(state = initialState, { type, collection, collec
                 ...state,
                 all: collections,
                 allLoaded: true,
+                services: null,
             }
         // to delete:
         // case LOAD_COLLECTION:
@@ -158,9 +188,7 @@ export default function reducer(state = initialState, { type, collection, collec
                 delete state.all[id]
                 return {
                     ...state,
-                    all: {
-                        ...state.all
-                    },
+                    all: { ...state.all },
                     current: null,
                     singleLoaded: false
                 }
@@ -168,13 +196,10 @@ export default function reducer(state = initialState, { type, collection, collec
                 delete state.all[id]
                 return {
                     ...state,
-                    all: {
-                        ...state.all
-                    },
-                    current: state.current,
-                    singleLoaded: state.singleLoaded
+                    all: { ...state.all },
                 }
             }
+
         default:
             return state;
     }
