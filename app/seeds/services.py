@@ -20,9 +20,29 @@ def seed_services():
                  domain="testing",
                  subdomain="viral",
                  status="proposed")
+    s3 = Service(billing_code=420,
+                 cpt_code="0224U",
+                 service_description="aweawet",
+                 list_price=1240.00,
+                 discounted_price=42.13,
+                 hospital_id=1,
+                 domain="testing",
+                 subdomain="viral",
+                 status="proposed")
+    s4 = Service(billing_code=200,
+                 cpt_code="0224U",
+                 service_description="KJDSHFKLHU ",
+                 list_price=52440.00,
+                 discounted_price=42.13,
+                 hospital_id=1,
+                 domain="testing",
+                 subdomain="viral",
+                 status="proposed")
 
     db.session.add(s1)
     db.session.add(s2)
+    db.session.add(s3)
+    db.session.add(s4)
     db.session.commit()
 
 

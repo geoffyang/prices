@@ -1,7 +1,8 @@
 import CollectionForm from "./CollectionForm"
-import "./CollectionsPage.css"
-import CollectionsList from "./CollectionsList"
 import { useSelector } from "react-redux"
+import CollectionsList from "./CollectionsList"
+import Services from "./ServicesList"
+import "./CollectionsPage.css"
 
 export default function CollectionsPage() {
 
@@ -26,11 +27,17 @@ export default function CollectionsPage() {
 
                 {
                     (singleLoaded
-                        ? (<h3>{all[currentId].name} </h3>)
-                        : <h1>Load a collection from the list</h1>
+                        ? (<div>
+                            <h3>{all[currentId].name} </h3>
+                            <Services />
+                            </div>
+                        )
+                        : <h1>Choose a collection from the list</h1>
                     )
                 }
             </div>
         </div>
     )
 }
+
+

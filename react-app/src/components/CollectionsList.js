@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { GetCollections, GetCollection, UnloadCollections, DeleteCollection } from "../store/collection"
+import { GetCollections, GetServices, UnloadCollections, DeleteCollection } from "../store/collection"
 import { BsTrash, BsPencil } from 'react-icons/bs';
 import './CollectionsList.css'
 
@@ -14,7 +14,7 @@ export default function CollectionsList() {
     }, [dispatch]);
 
     const loadCollection = (id) => {
-        dispatch(GetCollection(id))
+        dispatch(GetServices(id))
     }
 
     const editFunc = id => {
