@@ -53,15 +53,16 @@ def getCollection(id):
 #########################################
 
 # GET /api/collections/<id>/services
-@collection_routes.route('/<collection_id>/services')
+
+
+@collection_routes.route('/<collection_id>/services/')
 @login_required
 def getServicesInCollection(collection_id):
 
-    return Collection.query.get(collection_id).to_dict()["services"]
+    # working return 1
+    # return Collection.query.get(collection_id).to_dict()["services"]
 
-    # services = collection.services
-    # return {service.id:service for service in services}
-
+    # working return 2
     # if request.method == 'GET':
     #     rows = db.session.execute(
     #     f"SELECT * FROM services FULL JOIN service_collections ON services.id=service_collections.service_id FULL JOIN collections ON  service_collections.collection_id=collections.id WHERE service_collections.collection_id={collection_id}").fetchall()
@@ -104,11 +105,27 @@ def getServicesInCollection(collection_id):
 
     # attempt 6
 
-    # return services
+    # working return 3
+    collection = Collection.query.get(collection_id)
+    service_collections = collection.services
+    service_list = {service.id: service.to_dict()
+                    for service in service_collections}
+    return service_list
 
 
-# GET POST DELETE /api/collections/<id>/services/<id>
-@collection_routes.route('/<collection_id>/services/<service_id>')
+# POST DELETE /api/collections/<id>/services/<id>
+@collection_routes.route('/<collection_id>/services/<service_id>', methods=['POST', 'DELETE'])
 @login_required
 def serviceInCollection(collection_id, service_id):
-    pass
+    if request.method == "POST":  # add service to collection
+        db.session.execute(service_collections.insert().values(
+            service_id=service_id, collection_id=collection_id))
+        db.session.commit()
+        return {}
+    elif request.method == 'DELETE':
+        service = session.query(service_collections) \
+                         .filter(service_collections.collection_id==collection_id) \
+                         .filter(service_collections.service_id==service_id).one()
+        db.session.delete(service)
+        db.session.commit()
+        return {"success":f"{service_id} deleted"}

@@ -26,11 +26,23 @@ export default function CollectionsPage() {
 
                 {
                     (singleLoaded
-                        ? (<h3>{all[currentId].name} </h3>)
+                        ? (<div>
+                            <h3>{all[currentId].name} </h3>
+                            <Services />
+                            </div>
+                        )
                         : <h1>Choose a collection from the list</h1>
                     )
                 }
             </div>
         </div>
+    )
+}
+
+function Services() {
+    
+    return (
+        <h3>Services Component</h3>
+
     )
 }
