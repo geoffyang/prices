@@ -1,0 +1,6 @@
+.services-list {
+    height: 40px;
+    border: 1px solid pink;
+    display: flex;
+    justify-content: space-evenly;
+}

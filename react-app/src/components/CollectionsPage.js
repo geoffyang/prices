@@ -1,7 +1,8 @@
 import CollectionForm from "./CollectionForm"
-import "./CollectionsPage.css"
-import CollectionsList from "./CollectionsList"
 import { useSelector } from "react-redux"
+import CollectionsList from "./CollectionsList"
+import Services from "./ServicesList"
+import "./CollectionsPage.css"
 
 export default function CollectionsPage() {
 
@@ -39,10 +40,4 @@ export default function CollectionsPage() {
     )
 }
 
-function Services() {
-    
-    return (
-        <h3>Services Component</h3>
 
-    )
-}

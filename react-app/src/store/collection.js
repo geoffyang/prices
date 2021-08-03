@@ -4,6 +4,8 @@ const UPDATE_COLLECTION = "collection/UPDATE_COLLECTION"
 const UNLOAD_COLLECTIONS = "collection/UNLOAD_ALL"
 const UNLOAD_CURRENT_COLLECTION = "collection/UNLOAD_ONE"
 const REMOVE_COLLECTION = "collection/REMOVE_ONE"
+const LOAD_SERVICES = 'services/LOAD_SERVICES'
+const UPDATE_SERVICES = 'services/UPDATE_SERVICES'
 
 const loadCollections = (collections) => ({
     type: LOAD_COLLECTIONS,
@@ -30,11 +32,11 @@ export const GetCollections = () => async (dispatch) => {
         dispatch(loadCollections(data))
     }
 }
-
-export const GetCollection = id => ({
-    type: LOAD_COLLECTION,
-    id
-})
+// to delete
+// export const GetCollection = id => ({
+//     type: LOAD_COLLECTION,
+//     id
+// })
 
 export const PostCollection = (name) => async dispatch => {
     const response = await fetch('/api/collections/', {
@@ -59,33 +61,69 @@ export const DeleteCollection = id => async dispatch => {
     })
 
     dispatch(removeCollection(id))
-
 }
+
+export const GetServices = collectionId => async dispatch => {
+    const response = await fetch(`/api/collections/${collectionId}/services/`)
+    if (response.ok) {
+        const services = await response.json();
+        console.log(">>>>>>>", services)
+        dispatch(LoadServices(services, collectionId))
+    }
+}
+
+const LoadServices = (services, id) => ({
+    type: LOAD_SERVICES,
+    services,
+    id
+})
 
 const initialState = {
     all: {},
-    current: null,
     allLoaded: false,
+    current: null,
+    services: {},
+    servicesLoaded:false,
     singleLoaded: false
 }
 
-export default function reducer(state = initialState, { type, collection, collections, id }) {
+export default function reducer(state = initialState, { type, collection, collections, id, service, services }) {
     switch (type) {
+        case LOAD_SERVICES:
+            if (Object.keys(services).length > 0 ) {
+                return {
+                    ...state,
+                    all: { ...state.all },
+                    services: services,
+                    servicesLoaded: true,
+                    singleLoaded: true,
+                    current: id
+                }
+            }
+            return {
+                ...state,
+                all: { ...state.all },
+                services: {},
+                servicesLoaded: false,
+                singleLoaded: false,
+                current: id
+            }
         case LOAD_COLLECTIONS:
             return {
                 ...state,
                 all: collections,
                 allLoaded: true,
             }
-        case LOAD_COLLECTION:
-            return {
-                ...state,
-                all: {
-                    ...state.all
-                },
-                singleLoaded: true,
-                current: id
-            }
+        // to delete:
+        // case LOAD_COLLECTION:
+        //     return {
+        //         ...state,
+        //         all: {
+        //             ...state.all
+        //         },
+        //         singleLoaded: true,
+        //         current: id
+        //     }
         case UPDATE_COLLECTION:
             return {
                 ...state,
