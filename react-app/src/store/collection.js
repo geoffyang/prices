@@ -1,12 +1,10 @@
-const LOAD_COLLECTIONS = "collection/LOAD_COLLECTIONS"
-const LOAD_COLLECTION = "collection/LOAD_COLLECTION"
-const UPDATE_COLLECTION = "collection/UPDATE_COLLECTION"
-const UNLOAD_COLLECTIONS = "collection/UNLOAD_ALL"
-const UNLOAD_CURRENT_COLLECTION = "collection/UNLOAD_ONE"
-const REMOVE_COLLECTION = "collection/REMOVE_ONE"
-const LOAD_SERVICES = 'services/LOAD_SERVICES'
-const REMOVE_SERVICE = 'services/REMOVE_SERVICE'
-const UPDATE_SERVICES = 'services/UPDATE_SERVICES'
+const LOAD_COLLECTIONS = "collections/LOAD_COLLECTIONS"
+const UPDATE_COLLECTION = "collections/UPDATE_COLLECTION"
+const UNLOAD_COLLECTIONS = "collections/UNLOAD_ALL"
+const UNLOAD_CURRENT_COLLECTION = "collections/UNLOAD_ONE"
+const REMOVE_COLLECTION = "collections/REMOVE_ONE"
+const LOAD_SERVICES = 'collections/LOAD_SERVICES'
+const REMOVE_SERVICE = 'collections/REMOVE_SERVICE'
 
 const loadCollections = (collections) => ({
     type: LOAD_COLLECTIONS,
@@ -33,11 +31,6 @@ export const GetCollections = () => async (dispatch) => {
         dispatch(loadCollections(data))
     }
 }
-// to delete
-// export const GetCollection = id => ({
-//     type: LOAD_COLLECTION,
-//     id
-// })
 
 export const PostCollection = (name) => async dispatch => {
     const response = await fetch('/api/collections/', {

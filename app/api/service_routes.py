@@ -5,36 +5,6 @@ from app.models import User, db, Collection, Service, service_collections
 service_routes = Blueprint('services', __name__)
 
 
-# # GET /api/services/
-# @collection_routes.route('/')
-# @login_required
-# def getCollections():
-#     collections = Collection.query.filter(
-#         Collection.user_id == current_user.id).all()
-#     return {c.id: c.to_dict() for c in collections}
-
-
-# # POST /api/collections/
-# @collection_routes.route("/", methods=["POST"])
-# @login_required
-# def postCollection():
-#     form = NewCollection()
-#     print("PRINTING REQUEST DATA", request.json)
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         new_collection = Collection(
-#             name=form.data['name'],
-#             user_id=current_user.id
-#         )
-#         db.session.add(new_collection)
-#         db.session.commit()
-#         return {
-#             "id": new_collection.id,
-#             "name": new_collection.name,
-#             "user_id": new_collection.user_id
-#         }
-#     return "bad data"
-
 
 # GET DELETE /api/services/<id>/
 @service_routes.route("/<id>/", methods=['GET', 'DELETE'])
@@ -42,6 +12,7 @@ service_routes = Blueprint('services', __name__)
 def getService(id):
     service = Service.query.filter_by(id = id).one()
     if request.method == 'GET':
+        # print("NO))))))))))OOOOOOOOOOOOOO services", service.to_dict()["comments"])
         return service.to_dict()
     elif request.method == 'DELETE':
         db.session.delete(service)
