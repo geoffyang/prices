@@ -30,7 +30,7 @@ def getCollections():
                 "name": new_collection.name,
                 "user_id": new_collection.user_id
             }
-        return "bad data"
+        return "bad collection input"
 
 
 # GET DELETE /api/collections/<id>/
