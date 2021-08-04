@@ -3,51 +3,49 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 
 import "./ServicePage.css"
-import { GetService } from "../store/services";
+import { GetService, UnloadService } from "../store/services";
+import Comments from "./Comments"
 
 export default function ServicePage() {
     const dispatch = useDispatch();
 
     let { id } = useParams()
     const s = useSelector(state => state.services.current)
-    const isLoaded = useSelector(state => state.services.isLoaded)
+    const serviceLoaded = useSelector(state => state.services.serviceLoaded)
 
     useEffect(() => {
         dispatch(GetService(id))
+        return () => dispatch(UnloadService())
     }, [dispatch, id])
 
-    return (isLoaded
+    return (serviceLoaded
         ? (
 
             <div>
 
                 <div id="service__top">
-
-                    <div> Service number
+                    <div className="labels"> Service number
                         <span className="values">{id}</span>
                     </div>
-                    <div> Billing Code
+                    <div className="labels"> Billing Code
                         <span className="values">{s.billing_code}</span>
                     </div>
-                    <div> CPT Code
+                    <div className="labels"> CPT Code
                         <span className="values">{s.cpt_code}</span>
                     </div>
-                    <div> Service Description
+                    <div className="labels"> Service Description
                         <span className="values">{s.service_description}</span>
                     </div>
-                    <div> List Price
+                    <div className="labels"> List Price
                         <span className="values">{s.list_price.toFixed(2)}</span>
                     </div>
-                    <div> Discounted Price
+                    <div className="labels"> Discounted Price
                         <span className="values">{s.discounted_price.toFixed(2)}</span>
                     </div>
                 </div>
 
                 <div id="service__bottom">
 
-                    <div>
-
-                    </div>
                 </div>
 
             </div>
