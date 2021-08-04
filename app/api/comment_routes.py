@@ -6,7 +6,7 @@ comment_routes = Blueprint('comments', __name__)
 
 
 # GET DELETE /api/comments/<id>/
-@comment_routes.route("/<id>/", methods=['GET', 'DELETE'])
+@comment_routes.route("/<id>/", methods=['GET', 'DELETE', ])
 @login_required
 def deleteComment(id):
     comment = Comment.query.filter_by(id=id).one()

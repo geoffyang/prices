@@ -1,0 +1,19 @@
+#modal {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgoldenrod;
+}
+
+#modal-background {
+    position: fixed;
+    background-color: black;
+    color:white;
+}
+
+#modal-content {
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+}
