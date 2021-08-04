@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
+import { BsTrash, BsPencil } from 'react-icons/bs';
 
 import "./Comments.css"
-import { GetService } from "../store/service";
+import { GetService, DeleteComment } from "../store/service";
 
 export default function Comments() {
     const dispatch = useDispatch();
@@ -11,6 +12,10 @@ export default function Comments() {
 
     const comments = useSelector(state => state.service.currentServiceObj.comments)
     const commentsLoaded = useSelector(state => state.service.commentsLoaded)
+
+    const editFunc = id => {
+        // to do.
+    }
 
     return (
         <div>
@@ -25,7 +30,14 @@ export default function Comments() {
                                     {c.comment}</div>
                                 <div className={"comments__time"}>
                                     {c.display_time}</div>
-                                
+                                <BsPencil onClick={(e) => {
+                                    e.stopPropagation()
+                                    editFunc(c.id)
+                                }} />
+                                <BsTrash onClick={(e) => {
+                                    e.stopPropagation()
+                                    dispatch(DeleteComment(c.id))
+                                }} />
                             </div>
                         ))
                     }
