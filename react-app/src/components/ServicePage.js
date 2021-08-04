@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import "./ServicePage.css"
 import { GetService, UnloadService } from "../store/service";
 import Comments from "./Comments"
+import CommentsForm from "./CommentsForm"
 
 export default function ServicePage() {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function ServicePage() {
 
     useEffect(() => {
         dispatch(GetService(id))
-        // return () => dispatch(UnloadService())
+        return () => dispatch(UnloadService())
     }, [dispatch, id])
 
     return (serviceLoaded
@@ -43,7 +44,9 @@ export default function ServicePage() {
                         <span className="values">{s.discounted_price.toFixed(2)}</span>
                     </div>
                 </div>
-
+                <div id="comments-form">
+                    <CommentsForm />
+                </div>
                 <div id="service__bottom">
                     <Comments />
                 </div>

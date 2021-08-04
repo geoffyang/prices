@@ -1,7 +1,7 @@
 const LOAD_SERVICE = "service/LOAD_SERVICE"
 const UNLOAD_SERVICE = "service/UNLOAD_SERVICE"
 
-
+///////////////////////////////////////////////////
 export const GetService = (id) => async dispatch => {
     const response = await fetch(`/api/services/${id}/`)
     if (response.ok) {
@@ -14,17 +14,20 @@ const loadService = service => ({
     type: LOAD_SERVICE,
     service
 })
-
-const initialState = {
-
-    currentServiceObj: null,
-    serviceLoaded: null,
-    commentsLoaded: null
-}
+///////////////////////////////////////////////////
 
 export const UnloadService = () => ({
     type: UNLOAD_SERVICE
 })
+
+///////////////////////////////////////////////////
+
+
+const initialState = {
+    currentServiceObj: null,
+    serviceLoaded: null,
+    commentsLoaded: null
+}
 
 export default function reducer(state = initialState, { service, type }) {
     switch (type) {

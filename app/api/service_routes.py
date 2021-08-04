@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import User, db, Collection, Service, service_collections
-# # from app.forms import NewCollection
+from app.forms import NewComment
 service_routes = Blueprint('services', __name__)
 
 
@@ -12,7 +12,7 @@ service_routes = Blueprint('services', __name__)
 def getService(id):
     service = Service.query.filter_by(id = id).one()
     if request.method == 'GET':
-        # print("NO))))))))))OOOOOOOOOOOOOO services", service.to_dict()["comments"])
+        # print("NOOOOOOOOOOOOOOOOOOOOOO services", service.to_dict())
         return service.to_dict()
     elif request.method == 'DELETE':
         db.session.delete(service)
