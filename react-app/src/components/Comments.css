@@ -1,3 +1,5 @@
 .comments-div {
-    height: 4rem;
+    height: 3rem;
+    background-color: dodgerblue;
+    border:1px solid darkblue
 }

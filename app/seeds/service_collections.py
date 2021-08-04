@@ -7,6 +7,22 @@ def seed_service_collections():
         service_id=1, collection_id=1))
     db.session.execute(service_collections.insert().values(
         service_id=2, collection_id=1))
+    db.session.execute(service_collections.insert().values(
+        service_id=3, collection_id=1))
+    db.session.execute(service_collections.insert().values(
+        service_id=4, collection_id=1))
+    db.session.execute(service_collections.insert().values(
+        service_id=2, collection_id=2))
+    db.session.execute(service_collections.insert().values(
+        service_id=3, collection_id=2))
+    db.session.execute(service_collections.insert().values(
+        service_id=4, collection_id=2))
+    db.session.execute(service_collections.insert().values(
+        service_id=2, collection_id=4))
+    db.session.execute(service_collections.insert().values(
+        service_id=3, collection_id=4))
+    db.session.execute(service_collections.insert().values(
+        service_id=4, collection_id=4))
 
 
     db.session.commit()

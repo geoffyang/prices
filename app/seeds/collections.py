@@ -7,13 +7,25 @@ def seed_collections():
         user_id=1
     )
     c2=Collection(
-        name="First Collection",
+        name="Second Collection",
+        # service_id=2,
+        user_id=1
+    )
+    c3=Collection(
+        name="Gobbly",
+        # service_id=2,
+        user_id=1
+    )
+    c4=Collection(
+        name="Turkey",
         # service_id=2,
         user_id=1
     )
 
     db.session.add(c1)
     db.session.add(c2)
+    db.session.add(c3)
+    db.session.add(c4)
     db.session.commit()
 
 

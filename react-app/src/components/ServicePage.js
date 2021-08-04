@@ -3,15 +3,15 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 
 import "./ServicePage.css"
-import { GetService, UnloadService } from "../store/services";
+import { GetService, UnloadService } from "../store/service";
 import Comments from "./Comments"
 
 export default function ServicePage() {
     const dispatch = useDispatch();
 
     let { id } = useParams()
-    const s = useSelector(state => state.services.current)
-    const serviceLoaded = useSelector(state => state.services.serviceLoaded)
+    const s = useSelector(state => state.service.current)
+    const serviceLoaded = useSelector(state => state.service.serviceLoaded)
 
     useEffect(() => {
         dispatch(GetService(id))
@@ -45,7 +45,7 @@ export default function ServicePage() {
                 </div>
 
                 <div id="service__bottom">
-
+                    <Comments />
                 </div>
 
             </div>
