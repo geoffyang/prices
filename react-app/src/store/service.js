@@ -1,6 +1,7 @@
 const LOAD_SERVICE = "service/LOAD_SERVICE"
 const UNLOAD_SERVICE = "service/UNLOAD_SERVICE"
 const ADD_COMMENT = "service/ADD_COMMENT"
+const REMOVE_COMMENT = "service/REMOVE_COMMENT"
 
 ///////////////////////////////////////////////////
 export const GetService = (id) => async dispatch => {
@@ -43,13 +44,29 @@ const updateComment = comment => ({
 
 ///////////////////////////////////////////////////
 
+export const DeleteComment = (id) => async dispatch => {
+    await fetch(`/api/comments/${id}/`, {
+        method: 'DELETE',
+        headers: {"Content-Type":"application/json"}
+    })
+    dispatch(removeComment(id))
+}
+const removeComment = id => ({
+    type: REMOVE_COMMENT,
+    id
+})
+
+///////////////////////////////////////////////////
+
 const initialState = {
-    currentServiceObj: null,
+    currentServiceObj: {
+        comments: {}
+    },
     serviceLoaded: null,
     commentsLoaded: null
 }
 
-export default function reducer(state = initialState, { service, type, comment }) {
+export default function reducer(state = initialState, { service, type, comment, id }) {
     switch (type) {
         case LOAD_SERVICE:
             if (Object.keys(service.comments).length > 0) {
@@ -88,7 +105,28 @@ export default function reducer(state = initialState, { service, type, comment }
                         ...state.currentServiceObj.comments,
                         [comment.id]:comment
                     }
+                },
+                commentsLoaded:true
+            }
+        case REMOVE_COMMENT:
+            delete state.currentServiceObj.comments[id]
+            if (Object.keys(state.currentServiceObj.comments).length > 0) {
+                return {
+                    ...state,
+                    currentServiceObj: {
+                        ...state.currentServiceObj,
+                        comments:{...state.currentServiceObj.comments}
+                    },
+                    commentsLoaded:true
                 }
+            }
+            return {
+                ...state,
+                currentServiceObj: {
+                    ...state.currentServiceObj,
+                    comments: { }
+                },
+                commentsLoaded: null
             }
         default:
             return state;
