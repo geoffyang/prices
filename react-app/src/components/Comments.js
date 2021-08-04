@@ -9,7 +9,7 @@ export default function Comments() {
     const dispatch = useDispatch();
 
 
-    const comments = useSelector(state => state.service.current.comments)
+    const comments = useSelector(state => state.service.currentServiceObj.comments)
     const commentsLoaded = useSelector(state => state.service.commentsLoaded)
 
     return (

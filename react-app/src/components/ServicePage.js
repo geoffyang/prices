@@ -10,12 +10,12 @@ export default function ServicePage() {
     const dispatch = useDispatch();
 
     let { id } = useParams()
-    const s = useSelector(state => state.service.current)
+    const s = useSelector(state => state.service.currentServiceObj)
     const serviceLoaded = useSelector(state => state.service.serviceLoaded)
 
     useEffect(() => {
         dispatch(GetService(id))
-        return () => dispatch(UnloadService())
+        // return () => dispatch(UnloadService())
     }, [dispatch, id])
 
     return (serviceLoaded

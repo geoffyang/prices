@@ -17,7 +17,7 @@ const loadService = service => ({
 
 const initialState = {
 
-    current: null,
+    currentServiceObj: null,
     serviceLoaded: null,
     commentsLoaded: null
 }
@@ -31,7 +31,7 @@ export default function reducer(state = initialState, { service, type }) {
         case LOAD_SERVICE:
             if (Object.keys(service.comments).length > 0) {
                 return {
-                    current: {
+                    currentServiceObj: {
                         ...service,
                         comments: {
                             ...service.comments
@@ -42,7 +42,7 @@ export default function reducer(state = initialState, { service, type }) {
                 }
             }
             return {
-                current: {
+                currentServiceObj: {
                     ...service,
                     comments: null
                 },
