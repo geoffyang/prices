@@ -20,7 +20,13 @@ export default function Comments() {
                 ? (< div >
                     {
                         Object.values(comments).map((c, i) => (
-                            <div key={i} className={"comments-div"}>{c.comment}</div>
+                            <div key={i} className={"comments-div"}>
+                                <div className={"comments__text"}>
+                                    {c.comment}</div>
+                                <div className={"comments__time"}>
+                                    {c.display_time}</div>
+                                
+                            </div>
                         ))
                     }
                 </div >
