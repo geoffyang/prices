@@ -97,7 +97,7 @@ const initialState = {
     current: null,
     services: {},
     servicesLoaded: false,
-    singleLoaded: false
+    collectionLoaded: false
 }
 
 export default function reducer(state = initialState, { type, collection, collections, id, service, services }) {
@@ -109,8 +109,8 @@ export default function reducer(state = initialState, { type, collection, collec
                     all: { ...state.all },
                     services: services,
                     servicesLoaded: true,
-                    singleLoaded: true,
-                    current: id
+                    collectionLoaded:true,
+                    current:id
                 }
             }
             return {
@@ -118,7 +118,7 @@ export default function reducer(state = initialState, { type, collection, collec
                 all: { ...state.all },
                 services: null,
                 servicesLoaded: false,
-                singleLoaded: true,
+                collectionLoaded: true,
                 current: id
             }
         case REMOVE_SERVICE:
@@ -142,18 +142,8 @@ export default function reducer(state = initialState, { type, collection, collec
                 ...state,
                 all: collections,
                 allLoaded: true,
-                services: null,
+                services: {...state.services},
             }
-        // to delete:
-        // case LOAD_COLLECTION:
-        //     return {
-        //         ...state,
-        //         all: {
-        //             ...state.all
-        //         },
-        //         singleLoaded: true,
-        //         current: id
-        //     }
         case UPDATE_COLLECTION:
             return {
                 ...state,
@@ -162,17 +152,18 @@ export default function reducer(state = initialState, { type, collection, collec
                     [collection.id]: collection
                 },
                 current: state.current,
-                singleLoaded: state.singleLoaded
+                collectionLoaded: state.collectionLoaded
             }
         case UNLOAD_COLLECTIONS:
             return {
-                ...initialState,
                 all: {
-                    ...initialState.all
+                    ...state.all
                 },
-                current: null,
+                current: state.current,
                 allLoaded: false,
-                singleLoaded: false
+                services:{...state.services},
+                collectionLoaded:state.collectionLoaded,
+                servicesLoaded: state.servicesLoaded
             }
         case UNLOAD_CURRENT_COLLECTION:
             return {
@@ -181,7 +172,7 @@ export default function reducer(state = initialState, { type, collection, collec
                     ...state.all
                 },
                 current: null,
-                singleLoaded: false,
+                collectionLoaded: false,
             }
         case REMOVE_COLLECTION:
             if (state.current === id) {
@@ -190,7 +181,7 @@ export default function reducer(state = initialState, { type, collection, collec
                     ...state,
                     all: { ...state.all },
                     current: null,
-                    singleLoaded: false
+                    collectionLoaded: false
                 }
             } else {
                 delete state.all[id]

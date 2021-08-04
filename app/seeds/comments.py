@@ -17,11 +17,23 @@ def seed_comments():
         user_id =1,
         comment="any admins paying attention?",
         )
+    c4 = Comment(
+        service_id=2,
+        user_id =1,
+        comment="This was a dangerous operation",
+        )
+    c5 = Comment(
+        service_id=2,
+        user_id =2,
+        comment="Good outcome on this operation",
+        )
 
 
     db.session.add(c1)
     db.session.add(c2)
     db.session.add(c3)
+    db.session.add(c4)
+    db.session.add(c5)
 
     db.session.commit()
 

@@ -18,26 +18,24 @@ export default function Services() {
     }
     return (
         <>
-            {
-                (servicesLoaded
-                    ? (Object.values(services).map((s, i) => (
-                        <div key={i}
-                            className={"services-list"}
-                            onClick={() => redirect_single_service(s.id)}
-                        >
-                            <span>{s.billing_code}</span>
-                            <span>{s.service_description}</span>
-                            <span>${s.list_price}</span>
-                            <span>${s.discounted_price}</span>
-                            <span><BsTrash onClick={(e) => {
-                                e.stopPropagation()
-                                dispatch(DeleteService(current, s.id))
-                            }} /></span>
-                        </div>
-                    )))
-                    : <h1> No services in this collection</h1>
-                )
-            }
+            {(servicesLoaded
+                ? (Object.values(services).map((s, i) => (
+                    <div key={i}
+                        className={"services-list"}
+                        onClick={() => redirect_single_service(s.id)}
+                    >
+                        <span>{s.billing_code}</span>
+                        <span>{s.service_description}</span>
+                        <span>${s.list_price}</span>
+                        <span>${s.discounted_price}</span>
+                        <span><BsTrash onClick={(e) => {
+                            e.stopPropagation()
+                            dispatch(DeleteService(current, s.id))
+                        }} /></span>
+                    </div>
+                )))
+                : <h1> No services in this collection</h1>
+            )}
 
         </>
     )

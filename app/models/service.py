@@ -37,6 +37,7 @@ class Service(db.Model):
     )
 
 
+
     def to_dict(self):
         return{
             "id": self.id,
@@ -48,5 +49,6 @@ class Service(db.Model):
             "domain": self.domain,
             "subdomain": self.subdomain,
             "hospital_id": self.hospital_id,
-            "status": self.status
+            "status": self.status,
+            "comments":{c.id:c.to_dict() for c in self.comments}
         }

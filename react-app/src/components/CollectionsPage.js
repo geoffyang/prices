@@ -6,9 +6,8 @@ import "./CollectionsPage.css"
 
 export default function CollectionsPage() {
 
-    const currentId = useSelector(state => state.collections.current) || null
-    // const collections = useSelector(state => state.collections.all) || null
-    const singleLoaded = useSelector(state => state.collections.singleLoaded)
+    const collectionId = useSelector(state => state.collections.current) || null
+    const collectionLoaded = useSelector(state => state.collections.collectionLoaded)
     const all = useSelector(state => state.collections.all)
 
     return (
@@ -26,9 +25,9 @@ export default function CollectionsPage() {
             <div id="collections__right">
 
                 {
-                    (singleLoaded
+                    (collectionLoaded
                         ? (<div>
-                            <h3>{all[currentId].name} </h3>
+                            <h3>{all[collectionId].name} </h3>
                             <Services />
                             </div>
                         )
