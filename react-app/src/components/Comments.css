@@ -1,9 +1,40 @@
 .comments-div {
-    height: 3.5rem;
-    background-color: dodgerblue;
-    border:1px solid darkblue
+    min-height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    /* box-shadow: rgba(0, 0, 0, 0.01) 0px 12px 34px 0px; */
+    /* background-color: dodgerblue; */
+    /* border:1px solid darkblue */
 }
 
-.color{
-    background-color:darkkhaki;
+.color {
+    /* background-color: rgb(244, 243, 224, 0.6); */
+    /* box-shadow: 14px 14px 14px -7px rgba(0, 0, 0, 0.07); */
+    /* box-shadow: 0 6px 24px -24px rgba(0, 0, 0, 1); */
+    /* box-shadow: rgba(0, 0, 0, 0.01) 0px -10px 20px 0px, rgba(0, 0, 0, 0.02) 0px 10px 20px 0px, rgba(0, 0, 0, 0.02) 0px -10px 20px, rgba(0, 0, 0, 0.05) 0px 10px 20px; */
+    border-right: 2px solid rgb(192, 192, 192, 0.3);
+    border-bottom: 1px solid rgb(192, 192, 192, 0.2);
+}
+
+.comments__text {
+    margin-bottom: 5px;
+}
+
+.text-time {
+    /* background-color: red; */
+    width: 70%;
+    max-width: 500px;
+}
+
+.comments__time {
+    font-weight: 100;
+    font-size: .8rem;
+}
+
+.conditional-buttons {
+    padding-right: 2rem;
 }

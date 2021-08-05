@@ -12,52 +12,54 @@ const NavBar = () => {
 
   return (
     <nav id="nav__container">
-      <div id="nav__left">
-        <div className="nav__button">
-          <Link to='/' >
-            Hospital Prices
-          </Link>
-        </div>
-      </div>
-      <div id="nav__right">
-        <div className="nav__button">
-          <Link to='/mycollections' >
-            Collections
-          </Link>
-        </div>
-        <div className="nav__button">
-          <Link to='/services/1/' >
-            Service 1
-          </Link>
-        </div>
-        <div className="nav__button">
-          <Link to='/services/3/' >
-            Service 3
-          </Link>
-        </div>
-        {(user === null) &&
-          (<><div className="nav__button">
-            <Link to='/login' >
-              Login
+      <div id="nav__inner-container">
+        <div id="nav__left">
+          <div className="nav__button">
+            <Link to='/' >
+              Hospital Prices
             </Link>
           </div>
-            <div className="nav__button">
-              <Link to='/sign-up' >
-                Sign Up
-              </Link>
-            </div></>)}
-
-        {(user != null) && (
+        </div>
+        <div id="nav__right">
           <div className="nav__button">
-            <LogoutButton />
-          </div>)}
-
-
-        {(user === null) &&
-          <div className="nav__button">
-            <DemoButton />
+            <Link to='/mycollections' >
+              Collections
+            </Link>
           </div>
-        }
+          <div className="nav__button">
+            <Link to='/services/1/' >
+              Service 1
+            </Link>
+          </div>
+          <div className="nav__button">
+            <Link to='/services/3/' >
+              Service 3
+            </Link>
+          </div>
+          {(user === null) &&
+            (<><div className="nav__button">
+              <Link to='/login' >
+                Login
+              </Link>
+            </div>
+              <div className="nav__button">
+                <Link to='/sign-up' >
+                  Sign Up
+                </Link>
+              </div></>)}
+
+          {(user != null) && (
+            <div className="nav__button">
+              <LogoutButton />
+            </div>)}
+
+
+          {(user === null) &&
+            <div className="nav__button">
+              <DemoButton />
+            </div>
+          }
+        </div>
       </div>
     </nav>
   );

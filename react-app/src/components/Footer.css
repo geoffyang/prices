@@ -1,4 +1,37 @@
-#footer__container{
-    position:absolute;
-    
+#footer__container {
+    display: flex;
+    background-color: var(--gray);
+    height: 500px;
+    color: white;
+}
+
+#footer__right {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    background-color: lightslategray;
+}
+
+#footer__right>* {
+    color: white;
+    text-decoration: none;
+    padding-right: 4rem;
+    /* background-color: salmon; */
+    border: 1px solid black;
+}
+
+#footer__container *:visited {
+    color: inherit;
+}
+
+#footer__left {
+    width: 20%;
+    font-size: 30px;
+    font-weight: 500;
+    /* background-color: salmon; */
+    height: 100%;
+    margin-left: 2.5rem;
+    display: flex;
+    padding-top: 50px;
 }

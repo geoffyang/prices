@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { useDispatch , useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PostComment } from '../store/service';
+
+import './CommentsForm.css'
 
 
 export default function CommentsForm() {
@@ -18,23 +20,24 @@ export default function CommentsForm() {
 
     return (
 
-        <form onSubmit={formSubmitFunc} style={{ width: "100%" }}>
+        <form onSubmit={formSubmitFunc} className='form'>
             {/* <div>
                 {errors.map((err, ind) => (
                     <div key={ind}>{err}</div>
                 ))}
             </div> */}
-            <div>
-                <label>Your comment </label>
+            < div >
+                <label id="insightful-comment">Provide an insightful comment </label>
                 <input
                     type='text'
                     name='comment'
                     autoFocus
+                    autoComplete="off"
                     placeholder='This service was...'
                     onChange={({ target: { value } }) => setComment(value)}
-                    value={comment}/>
-            </div>
+                    value={comment} />
+            </div >
             <button type='submit'>Submit</button>
-        </form>
+        </form >
     )
 }
