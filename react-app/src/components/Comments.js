@@ -33,16 +33,18 @@ export default function Comments() {
         <>
 
             <div>
-                Comments Section - user: {user.id}
+                {/* Comments Section - user: {user.id} */}
                 {commentsLoaded
                     ? (<div>
                         {
                             Object.values(comments).map((c, i) => (
-                                <div key={i} className={"comments-div " + (user.id===c.user_id? 'color':'noColor')}>
-                                    <div className={"comments__text"}>
-                                        {c.comment}</div>
-                                    <div className={"comments__time"}>
-                                        {c.display_time}</div>
+                                <div key={i} className={"comments-div " + (user.id === c.user_id ? 'color' : 'noColor')}>
+                                    <div className="text-time">
+                                        <div className={"comments__text"}>
+                                            {c.comment}</div>
+                                        <div className={"comments__time"}>
+                                            {c.display_time}</div>
+                                    </div>
 
                                     {user.id === c.user_id
                                         ? (<div className={"conditional-buttons"}>

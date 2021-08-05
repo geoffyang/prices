@@ -9,3 +9,34 @@
     --yellow: rgb(252, 228, 45);
     --gray: rgb(41, 41, 41)
 }
+
+.form {
+    display: flex;
+    align-items: center;
+}
+
+input {
+    border: 1px solid rgb(202, 202, 202);
+    outline: 0;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 1rem;
+}
+
+input:focus {
+    border: 2px solid gray;
+}
+
+label {
+    margin-right: 1rem;
+}
+
+button {
+    background-color: rgb(202, 190, 190);
+    border: 0;
+    outline: 0;
+    height: 40px;
+    width: 60px;
+    border-radius: 5px;
+}

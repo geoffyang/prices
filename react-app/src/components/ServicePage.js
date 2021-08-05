@@ -33,10 +33,10 @@ export default function ServicePage() {
                         </div>
                     </div>
 
-                    <div id="service__about" className="titles">
+                    <div id="service__about" className="service__section" >
                         <div id="service__about__left" className="service__left-column">About</div>
 
-                        <div className="service__middle-spacer"></div>
+                        <div className="service__middle-spacer"> </div>
 
                         <div id="service__about__right" className="service__right-column">
 
@@ -60,11 +60,29 @@ export default function ServicePage() {
                         </div>
                     </div>
                 </div >
-                <div id="comments-form">
-                    <CommentsForm />
-                </div>
-                <div id="service__bottom">
-                    <Comments />
+                <div id="service__comments" className="service__section">
+
+
+                    <div id="service__about__left" className="service__left-column">Comments</div>
+
+
+
+                    <div className="service__middle-spacer"> </div>
+
+
+
+                    <div className="service__right-column" id="comments-vertical">
+
+                        <div id="comments-form">
+                            <CommentsForm />
+                        </div>
+                        <div id="comments-list">
+                            <Comments />
+                        </div>
+
+                    </div>
+
+
                 </div>
             </div >
         )
