@@ -14,10 +14,12 @@ export const GetService = (id) => async dispatch => {
     }
 }
 
-const loadService = service => ({
-    type: LOAD_SERVICE,
-    service
-})
+const loadService = service => {
+    return ({
+        type: LOAD_SERVICE,
+        service
+    })
+}
 ///////////////////////////////////////////////////
 
 export const UnloadService = () => ({

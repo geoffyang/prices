@@ -9,14 +9,16 @@ service_routes = Blueprint('services', __name__)
 @service_routes.route("/<id>/", methods=['GET', 'DELETE'])
 @login_required
 def getService(id):
-    service = Service.query.filter_by(id=id).one()
-    if request.method == 'GET':
-        # print("NOOOOOOOOOOOOOOOOOOOOOO services", service.to_dict())
-        return service.to_dict()
-    elif request.method == 'DELETE':
-        db.session.delete(service)
-        db.session.commit()
-        return {"deleted": id}
+    # try:
+        service = Service.query.filter_by(id=id).first()
+        if request.method == 'GET':
+            return service.to_dict()
+        elif request.method == 'DELETE':
+            db.session.delete(service)
+            db.session.commit()
+            return {"deleted": id}
+    # except:
+        # return {}
 
 
 # POST /api/services/<id>/comments/

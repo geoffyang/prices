@@ -5,14 +5,12 @@ import { login } from "../../store/session"
 export default function DemoButton() {
     const dispatch = useDispatch()
 
-    const user = useSelector(state => state.session.user);
-
     const loginDemoUser = async (e) => {
         await dispatch(login("demo@aa.io", "password"));
     }
 
-    return (user === null) &&
+    return (
         <button id="demo-user-button" onClick={loginDemoUser}>
             Demo User
-        </button>
+        </button>)
 }
