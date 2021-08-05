@@ -16,6 +16,7 @@ export default function Comments() {
 
     const comments = useSelector(state => state.service.currentServiceObj.comments)
     const commentsLoaded = useSelector(state => state.service.commentsLoaded)
+    const user = useSelector(state => state.session.user)
 
     const handleEdit = e => {
         e.preventDefault();
@@ -32,26 +33,33 @@ export default function Comments() {
         <>
 
             <div>
-                Comments Section
+                Comments Section - user: {user.id}
                 {commentsLoaded
-                    ? (< div >
+                    ? (<div>
                         {
                             Object.values(comments).map((c, i) => (
-                                <div key={i} className={"comments-div"}>
+                                <div key={i} className={"comments-div " + (user.id===c.user_id? 'color':'noColor')}>
                                     <div className={"comments__text"}>
                                         {c.comment}</div>
                                     <div className={"comments__time"}>
                                         {c.display_time}</div>
-                                    <BsPencil onClick={(e) => {
-                                        e.stopPropagation()
-                                        setShowModal(true)
-                                        setCommentId(c.id)
-                                        setComment(comments[c.id].comment)
-                                    }} />
-                                    <BsTrash onClick={(e) => {
-                                        e.stopPropagation()
-                                        dispatch(DeleteComment(c.id))
-                                    }} />
+
+                                    {user.id === c.user_id
+                                        ? (<div className={"conditional-buttons"}>
+                                            <BsPencil onClick={(e) => {
+                                                e.stopPropagation()
+                                                setShowModal(true)
+                                                setCommentId(c.id)
+                                                setComment(comments[c.id].comment)
+                                            }} />
+                                            <BsTrash onClick={(e) => {
+                                                e.stopPropagation()
+                                                dispatch(DeleteComment(c.id))
+                                            }} />
+                                        </div>)
+                                        : null
+                                    }
+
                                 </div>
                             ))
                         }
