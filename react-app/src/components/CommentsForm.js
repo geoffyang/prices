@@ -28,7 +28,7 @@ export default function CommentsForm() {
                 <label>Your comment </label>
                 <input
                     type='text'
-                    name='name'
+                    name='comment'
                     autoFocus
                     placeholder='This service was...'
                     onChange={({ target: { value } }) => setComment(value)}
