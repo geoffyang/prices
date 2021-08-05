@@ -57,6 +57,18 @@ export const DeleteCollection = id => async dispatch => {
     dispatch(removeCollection(id))
 }
 
+export const EditCollectionName = ({ name, id }) => async dispatch => {
+    const response = await fetch(`/api/collections/${id}/`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name:name, id:id })
+    })
+    if (response.ok) {
+        const collection = await response.json()
+        dispatch(updateCollection(collection))
+    }
+}
+
 export const GetServices = collectionId => async dispatch => {
     const response = await fetch(`/api/collections/${collectionId}/services/`)
     if (response.ok) {
