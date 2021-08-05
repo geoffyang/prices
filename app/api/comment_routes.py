@@ -12,7 +12,6 @@ from app.forms import NewComment
 @comment_routes.route("/<id>/", methods=['GET', 'DELETE', 'PUT'])
 @login_required
 def deleteComment(id):
-    print("wtf is id", id)
     comment = Comment.query.get(id)
     if request.method == 'GET':
         return comment.to_dict()
