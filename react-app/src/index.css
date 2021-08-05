@@ -2,7 +2,10 @@
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     font-family: "Founders Grotesk", sans-serif;
+    /* font-size: 16px; */
+    --yellow: rgb(252, 228, 45);
+    --gray: rgb(41, 41, 41)
 }
