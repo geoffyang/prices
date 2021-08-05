@@ -24,7 +24,6 @@ def deleteComment(id):
         setattr(comment, "comment", form.data['comment'])
         setattr(comment, "updated_at", datetime.utcnow())
         db.session.commit()
-        print(">>>>>>>>>>>>>>>>>>comment", comment.to_dict())
         return comment.to_dict()
 
         # alternate fang fa
