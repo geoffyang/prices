@@ -29,7 +29,7 @@ class Comment(db.Model):
         "comments"), passive_deletes=True)
 
     def to_dict(self):
-        post_date = self.created_at
+        post_date = self.updated_at
         am_pm = post_date.strftime("%p").lower()
         display_time = post_date.strftime(f"%-I{am_pm} %b %Y")
         return{

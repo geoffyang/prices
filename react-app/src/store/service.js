@@ -1,7 +1,8 @@
 const LOAD_SERVICE = "service/LOAD_SERVICE"
 const UNLOAD_SERVICE = "service/UNLOAD_SERVICE"
-const ADD_COMMENT = "service/ADD_COMMENT"
+const UPDATE_COMMENT = "service/UPDATE_COMMENT"
 const REMOVE_COMMENT = "service/REMOVE_COMMENT"
+
 
 /////////////////////get///////////////////////////
 
@@ -38,7 +39,7 @@ export const PostComment = (comment, serviceId) => async dispatch => {
     }
 }
 const updateComment = comment => ({
-    type: ADD_COMMENT,
+    type: UPDATE_COMMENT,
     comment
 })
 
@@ -59,14 +60,16 @@ const removeComment = id => ({
 //////////////////////edit//////////////////////////
 
 export const EditComment = ({ comment, id }) => async dispatch => {
-    await fetch(`/api/comments/${id}/`, {
+    const response = await fetch(`/api/comments/${id}/`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ comment: comment })
-
     })
+    if (response.ok) {
+        const editedComment = await response.json()
+        dispatch(updateComment(editedComment))
+    }
 }
-
 
 
 ///////////////////////////////////////////////////
@@ -109,7 +112,7 @@ export default function reducer(state = initialState, { service, type, comment, 
                     comments: null
                 }
             }
-        case ADD_COMMENT:
+        case UPDATE_COMMENT:
             return {
                 ...state,
                 currentServiceObj: {
