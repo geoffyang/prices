@@ -14,8 +14,13 @@ def seed_comments():
         )
     c3 = Comment(
         service_id=1,
-        user_id =1,
+        user_id =2,
         comment="any admins paying attention?",
+        )
+    c6 = Comment(
+        service_id=1,
+        user_id =1,
+        comment="any admins paying attention???????",
         )
     c4 = Comment(
         service_id=2,
@@ -34,6 +39,7 @@ def seed_comments():
     db.session.add(c3)
     db.session.add(c4)
     db.session.add(c5)
+    db.session.add(c6)
 
     db.session.commit()
 
