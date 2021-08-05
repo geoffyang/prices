@@ -46,6 +46,7 @@ export default function Comments() {
                                         e.stopPropagation()
                                         setShowModal(true)
                                         setCommentId(c.id)
+                                        setComment(comments[c.id].comment)
                                     }} />
                                     <BsTrash onClick={(e) => {
                                         e.stopPropagation()
@@ -73,7 +74,7 @@ export default function Comments() {
                     </form>
                 </Modal>
             )}
-            
+
         </>
     )
 }

@@ -12,7 +12,7 @@ from app.forms import NewComment
 @comment_routes.route("/<id>/", methods=['GET', 'DELETE', 'PUT'])
 @login_required
 def deleteComment(id):
-    comment = Comment.query.filter_by(id=id).one()
+    comment = Comment.query.get(id)
     if request.method == 'GET':
         return comment.to_dict()
     elif request.method == 'DELETE':
@@ -20,20 +20,13 @@ def deleteComment(id):
         db.session.commit()
         return {"deleted": id}
     elif request.method == 'PUT':
-
-        # pull data off request.data and validate it
         form = NewComment()
-        #maybe returns errors to front end
-
-        print("HHHHHHHHHHHHHHHHH form data HHHHHHHHHHHHHHHHHHHHHHHHHHHHH",request.form)
-
-        # attempt 1
         setattr(comment, "comment", form.data['comment'])
         setattr(comment, "updated_at", datetime.utcnow())
         db.session.commit()
-        return {"edited": id}
+        return comment.to_dict()
 
-        # attempt 2
+        # alternate fang fa
         # form.populate_obj(comment)
         # comment.updated_at = datetime.utcnow()
         # db.session.add(comment)
