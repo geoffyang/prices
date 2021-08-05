@@ -3,7 +3,8 @@ const UNLOAD_SERVICE = "service/UNLOAD_SERVICE"
 const ADD_COMMENT = "service/ADD_COMMENT"
 const REMOVE_COMMENT = "service/REMOVE_COMMENT"
 
-///////////////////////////////////////////////////
+/////////////////////get///////////////////////////
+
 export const GetService = (id) => async dispatch => {
     const response = await fetch(`/api/services/${id}/`)
     if (response.ok) {
@@ -22,8 +23,7 @@ export const UnloadService = () => ({
     type: UNLOAD_SERVICE
 })
 
-
-///////////////////////////////////////////////////
+/////////////////////post//////////////////////////
 
 export const PostComment = (comment, serviceId) => async dispatch => {
     const response = await fetch(`/api/services/${serviceId}/comments/`, {
@@ -42,12 +42,12 @@ const updateComment = comment => ({
     comment
 })
 
-///////////////////////////////////////////////////
+//////////////////////delete///////////////////////
 
 export const DeleteComment = (id) => async dispatch => {
     await fetch(`/api/comments/${id}/`, {
         method: 'DELETE',
-        headers: {"Content-Type":"application/json"}
+        headers: { "Content-Type": "application/json" }
     })
     dispatch(removeComment(id))
 }
@@ -55,6 +55,19 @@ const removeComment = id => ({
     type: REMOVE_COMMENT,
     id
 })
+
+//////////////////////edit//////////////////////////
+
+export const EditComment = ({ comment, id }) => async dispatch => {
+    await fetch(`/api/comments/${id}/`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ comment: comment })
+
+    })
+}
+
+
 
 ///////////////////////////////////////////////////
 
@@ -103,10 +116,10 @@ export default function reducer(state = initialState, { service, type, comment, 
                     ...state.currentServiceObj,
                     comments: {
                         ...state.currentServiceObj.comments,
-                        [comment.id]:comment
+                        [comment.id]: comment
                     }
                 },
-                commentsLoaded:true
+                commentsLoaded: true
             }
         case REMOVE_COMMENT:
             delete state.currentServiceObj.comments[id]
@@ -115,16 +128,16 @@ export default function reducer(state = initialState, { service, type, comment, 
                     ...state,
                     currentServiceObj: {
                         ...state.currentServiceObj,
-                        comments:{...state.currentServiceObj.comments}
+                        comments: { ...state.currentServiceObj.comments }
                     },
-                    commentsLoaded:true
+                    commentsLoaded: true
                 }
             }
             return {
                 ...state,
                 currentServiceObj: {
                     ...state.currentServiceObj,
-                    comments: { }
+                    comments: {}
                 },
                 commentsLoaded: null
             }

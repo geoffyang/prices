@@ -19,19 +19,7 @@ def getService(id):
         return {"deleted": id}
 
 
-# PUT DELETE /api/services/<id>/comments/<id>/
-@service_routes.route("/<serviceId>/comments/<commentId>", methods=['PUT', 'DELETE'])
-@login_required
-def editComments(serviceId, commentId):
-    comment = Comment.query.filter_by(id=commentId)
-    if request.method == "DELETE":
-        pass
-    elif request.method == "PUT":
-        pass
-
 # POST /api/services/<id>/comments/
-
-
 @service_routes.route("/<service_id>/comments/", methods=['POST'])
 @login_required
 def addComment(service_id):
@@ -48,3 +36,14 @@ def addComment(service_id):
         db.session.commit()
         return new_comment.to_dict()
     return "bad comment input"
+
+
+# # PUT DELETE /api/services/<service_id>/comments/<comment_id>/
+# @service_routes.route("/<service_id>/comments/<comment_id>", methods=['PUT', 'DELETE'])
+# @login_required
+# def editComments(service_id, comment_id):
+#     comment = Comment.query.filter_by(id=comment_id)
+#     if request.method == "DELETE":
+#         pass
+#     elif request.method == "PUT":
+#         pass
