@@ -21,28 +21,22 @@ export default function ServicePage() {
 
     return (serviceLoaded
         ? (
-
             <div>
 
                 <div id="service__top">
+                    <div id="breadcrumbs">Home / </div>
                     <div className="labels"> Service number
-                        <span className="values">{id}</span>
-                    </div>
+                        <span className="values">{id}</span></div>
                     <div className="labels"> Billing Code
-                        <span className="values">{s.billing_code}</span>
-                    </div>
+                        <span className="values">{s.billing_code}</span></div>
                     <div className="labels"> CPT Code
-                        <span className="values">{s.cpt_code}</span>
-                    </div>
+                        <span className="values">{s.cpt_code}</span></div>
                     <div className="labels"> Service Description
-                        <span className="values">{s.service_description}</span>
-                    </div>
+                        <span className="values">{s.service_description}</span></div>
                     <div className="labels"> List Price
-                        <span className="values">{s.list_price.toFixed(2)}</span>
-                    </div>
+                        <span className="values">{s.list_price.toFixed(2)}</span></div>
                     <div className="labels"> Discounted Price
-                        <span className="values">{s.discounted_price.toFixed(2)}</span>
-                    </div>
+                        <span className="values">{s.discounted_price.toFixed(2)}</span></div>
                 </div>
                 <div id="comments-form">
                     <CommentsForm />
@@ -50,7 +44,6 @@ export default function ServicePage() {
                 <div id="service__bottom">
                     <Comments />
                 </div>
-
             </div>
         )
         : <h3>That service doesn't exist</h3>
