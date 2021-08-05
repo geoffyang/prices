@@ -34,7 +34,8 @@ def getCollections():
 
 
 # GET DELETE /api/collections/<id>/
-@collection_routes.route("/<id>/", methods=['GET', 'DELETE']) # is GET used?
+# is GET used?
+@collection_routes.route("/<id>/", methods=['GET', 'DELETE', 'PUT'])
 @login_required
 def getCollection(id):
     collection = Collection.query.filter(Collection.id == id).one()
@@ -45,6 +46,12 @@ def getCollection(id):
         db.session.delete(collection)
         db.session.commit()
         return {"deleted": id}
+    elif request.method == 'PUT':
+        form = NewCollection()
+        setattr(collection, 'name', form.data['name'])
+        db.session.commit()
+        return collection.to_dict()
+
 
 #########################################
 #                                       #
@@ -126,4 +133,4 @@ def serviceInCollection(collection_id, service_id):
         service = Service.query.get(service_id)
         collection.services.remove(service)
         db.session.commit()
-        return {"success":f"{service_id} deleted"}
+        return {"success": f"{service_id} deleted"}

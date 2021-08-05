@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Modal } from '../context/Modal'
 import { useDispatch, useSelector } from "react-redux"
 import { BsTrash, BsPencil } from 'react-icons/bs';
 
+import { Modal } from '../context/Modal'
 import "./Comments.css"
 import { DeleteComment, EditComment } from "../store/service";
 
