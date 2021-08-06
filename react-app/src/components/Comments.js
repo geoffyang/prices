@@ -78,6 +78,7 @@ export default function Comments() {
                             type='text'
                             name='Edit Comment'
                             autoFocus
+                            autoComplete='off'
                             onChange={({ target: { value } }) => setComment(value)}
                             value={comment} />
                         <button type="submit">Edit</button>
