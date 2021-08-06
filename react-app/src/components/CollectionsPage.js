@@ -37,7 +37,7 @@ export default function CollectionsPage() {
                         </div>
                         )
                         : noCollectionsToDisplay
-                            ? (<div className="collection__header" > No collections to display </div>)
+                            ? (<div className="collection__header" style={{ color: "red" }}> No collections to display </div>)
                             : (<div className="collection__header">Choose a collection from the list</div>)
                     }
                 </div>

@@ -1,3 +1,30 @@
-/* #signup-form {
-    margin-top: 81px;
-} */
+#signup-form {
+    /* position: absolute; */
+    right: 0;
+    /* z-index: 5; */
+    width: 100%;
+    height: 600px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    /* border: 2px solid red; */
+}
+
+.signup-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    margin-bottom: 1rem;
+    /* border: 2px solid red; */
+}
+
+#signup-errors {
+    border: 5px solid blue;
+    width: 400px;
+    margin-bottom: 2rem;
+    color: red;
+}
