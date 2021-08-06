@@ -32,11 +32,11 @@ export default function CollectionsPage() {
                     {
                         (collectionLoaded
                             ? (<div>
-                                <h3>{all[collectionId].name} </h3>
+                                <div className="collection__header">{all[collectionId].name} </div>
                                 <ServicesList />
                             </div>
                             )
-                            : <h1>Choose a collection from the list</h1>
+                            : (<div className="collection__header">Choose a collection from the list</div>)
                         )
                     }
                 </div>
