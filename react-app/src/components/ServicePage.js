@@ -86,6 +86,42 @@ export default function ServicePage() {
                 </div>
             </div >
         )
-        : <h3>That service doesn't exist</h3>
+        : (<div id="service__top">
+            <div id="breadcrumbs">Services</div>
+            <div id="service-name">
+                <div id="service-description" >That service does not exist
+                </div>
+                <div id="billing-code" className="labels"> Billing Code
+                    <span id="service-description-code" >n/a</span>
+                </div>
+            </div>
+
+            <div id="service__about" className="service__section" >
+                <div id="service__about__left" className="service__left-column">About</div>
+
+                <div className="service__middle-spacer"> </div>
+
+                <div id="service__about__right" className="service__right-column">
+
+                    <div className=" service-grid-stats"> List Price
+                        <div className="service__grid-values">n/a</div>
+                    </div>
+
+                    <div className=" service-grid-stats"> Discounted Price
+                        <div className="service__grid-values">n/a</div>
+                    </div>
+
+                    <div className=" service-grid-stats"> CPT Code
+                        <div className="service__grid-values">n/a</div>
+                    </div>
+
+                    <div className=" service-grid-stats"> Hospital ID
+                        <div className="service__grid-values">n/a</div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div >)
     )
 }

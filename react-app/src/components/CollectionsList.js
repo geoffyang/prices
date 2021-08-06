@@ -45,7 +45,7 @@ export default function CollectionsList() {
                     key={i}
                     onClick={() => { loadCollection(c.id) }}
                 >
-                    <div >
+                    <div className="list__collection-name">
                         {c.name}
                     </div>
                     <div className="list__collection-icons">
@@ -70,6 +70,7 @@ export default function CollectionsList() {
                             type='text'
                             name='Edit Collection Name'
                             autoFocus
+                            autoComplete='off'
                             onChange={({ target: { value } }) => setCollectionName(value)}
                             value={collectionName} />
                         <button type="submit">Edit</button>
