@@ -1,8 +1,11 @@
 .services-list {
-    height: 40px;
-    border: 1px solid pink;
+    height: 70px;
     display: grid;
     grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
     align-items: center;
+    border-bottom: 1px solid lightgray;
+}
 
+.services-list:hover {
+    background-color: var(--yellow);
 }
