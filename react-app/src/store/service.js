@@ -36,10 +36,18 @@ export const PostComment = (comment, serviceId) => async dispatch => {
     })
     if (response.ok) {
         const comment = await response.json();
-        // console.log(">>>>>>>>>>Comment>>>>>", comment);
         dispatch(updateComment(comment))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occured, please try again"]
     }
 }
+
 const updateComment = comment => ({
     type: UPDATE_COMMENT,
     comment

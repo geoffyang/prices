@@ -7,12 +7,15 @@ import './CollectionForm.css'
 
 export default function CollectionForm() {
     const dispatch = useDispatch();
-    // const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([])
     const [collectionName, setCollectionName] = useState("")
 
     const formSubmitFunc = async (e) => {
         e.preventDefault();
-        await dispatch(PostCollection(collectionName))
+        const data = await dispatch(PostCollection(collectionName))
+        if (data) {
+            setErrors(data)
+        }
         setCollectionName("")
     }
 
@@ -21,11 +24,11 @@ export default function CollectionForm() {
     return (
 
         <form onSubmit={formSubmitFunc} id="collection-form__container">
-            {/* <div>
+            <div style={{ color: 'red' }} >
                 {errors.map((err, ind) => (
                     <div key={ind}>{err}</div>
                 ))}
-            </div> */}
+            </div>
 
             <div id="collection-form__label">Create a collection </div>
             <div id="collection-form__flex">
@@ -35,7 +38,7 @@ export default function CollectionForm() {
                     name='name'
                     autoFocus
                     autoComplete='off'
-                    placeholder='Your Collection Name'
+                    placeholder='Your Collection Name (40 character limit)'
                     onChange={({ target: { value } }) => setCollectionName(value)}
                     value={collectionName} />
                 <button type='submit'>Submit</button>

@@ -1,14 +1,24 @@
+from app.forms import NewComment
+from app.models import User, db, Collection, Service, service_collections, Comment
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from datetime import datetime
 
 comment_routes = Blueprint('comments', __name__)
-from app.models import User, db, Collection, Service, service_collections, Comment
-from app.forms import NewComment
 
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
-# GET DELETE /api/comments/<id>/
+
+# GET DELETE PUT /api/comments/<id>/
 @comment_routes.route("/<id>/", methods=['GET', 'DELETE', 'PUT'])
 @login_required
 def deleteComment(id):
@@ -21,12 +31,16 @@ def deleteComment(id):
         return {"deleted": id}
     elif request.method == 'PUT':
         form = NewComment()
-        setattr(comment, "comment", form.data['comment'])
-        setattr(comment, "updated_at", datetime.utcnow())
-        db.session.commit()
-        return comment.to_dict()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        print(">>>>>>>>>>>>>>>>>>>>>>>put request", form.data)
+        if form.validate_on_submit():
+            setattr(comment, "comment", form.data['comment'])
+            setattr(comment, "updated_at", datetime.utcnow())
+            db.session.commit()
+            return comment.to_dict()
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-        # alternate fang fa
+        # alternate method
         # form.populate_obj(comment)
         # comment.updated_at = datetime.utcnow()
         # db.session.add(comment)

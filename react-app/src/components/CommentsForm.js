@@ -7,13 +7,16 @@ import './CommentsForm.css'
 
 export default function CommentsForm() {
     const dispatch = useDispatch();
-    // const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([])
     const [comment, setComment] = useState("")
     const serviceId = useSelector(state => state.service.currentServiceObj.id)
 
     const formSubmitFunc = async (e) => {
         e.preventDefault();
-        await dispatch(PostComment(comment, serviceId))
+        const data = await dispatch(PostComment(comment, serviceId))
+        if (data) {
+            setErrors(data)
+        }
         setComment("")
     }
 
@@ -21,11 +24,11 @@ export default function CommentsForm() {
     return (
 
         <form onSubmit={formSubmitFunc} className='form'>
-            {/* <div>
+            <div id="comment-form-errors" style={{ color: 'red' }}>
                 {errors.map((err, ind) => (
                     <div key={ind}>{err}</div>
                 ))}
-            </div> */}
+            </div>
             < div >
                 <label id="insightful-comment">Provide your insight </label>
                 <input
@@ -33,7 +36,7 @@ export default function CommentsForm() {
                     name='comment'
                     autoFocus
                     autoComplete="off"
-                    placeholder='This service was...'
+                    placeholder='250 character limit...'
                     onChange={({ target: { value } }) => setComment(value)}
                     value={comment} />
             </div >

@@ -10,3 +10,7 @@
 .services-list:hover {
     background-color: var(--yellow);
 }
+
+.blue:hover {
+    background-color: var(--yellow);
+}
