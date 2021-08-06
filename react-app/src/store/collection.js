@@ -61,7 +61,7 @@ export const EditCollectionName = ({ name, id }) => async dispatch => {
     const response = await fetch(`/api/collections/${id}/`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name:name, id:id })
+        body: JSON.stringify({ name: name, id: id })
     })
     if (response.ok) {
         const collection = await response.json()
@@ -102,7 +102,8 @@ const initialState = {
     current: null,
     services: {},
     servicesLoaded: false,
-    collectionLoaded: false
+    collectionLoaded: false,
+    noCollectionsToDisplay: false
 }
 
 export default function reducer(state = initialState, { type, collection, collections, id, service, services }) {
@@ -114,8 +115,8 @@ export default function reducer(state = initialState, { type, collection, collec
                     all: { ...state.all },
                     services: services,
                     servicesLoaded: true,
-                    collectionLoaded:true,
-                    current:id
+                    collectionLoaded: true,
+                    current: id
                 }
             }
             return {
@@ -143,11 +144,21 @@ export default function reducer(state = initialState, { type, collection, collec
                 current: id
             }
         case LOAD_COLLECTIONS:
+            if (Object.keys(collections).length === 0) {
+                return {
+                    ...state,
+                    all: collections,
+                    allLoaded: true,
+                    services: { ...state.services },
+                    noCollectionsToDisplay: true,
+                }
+            }
             return {
                 ...state,
                 all: collections,
                 allLoaded: true,
-                services: {...state.services},
+                services: { ...state.services },
+                noCollectionsToDisplay: false,
             }
         case UPDATE_COLLECTION:
             return {
@@ -157,7 +168,8 @@ export default function reducer(state = initialState, { type, collection, collec
                     [collection.id]: collection
                 },
                 current: state.current,
-                collectionLoaded: state.collectionLoaded
+                collectionLoaded: state.collectionLoaded,
+                noCollectionsToDisplay: false,
             }
         case UNLOAD_COLLECTIONS:
             return {
@@ -166,8 +178,8 @@ export default function reducer(state = initialState, { type, collection, collec
                 },
                 current: state.current,
                 allLoaded: false,
-                services:{...state.services},
-                collectionLoaded:state.collectionLoaded,
+                services: { ...state.services },
+                collectionLoaded: state.collectionLoaded,
                 servicesLoaded: state.servicesLoaded
             }
         case UNLOAD_CURRENT_COLLECTION:
@@ -182,14 +194,32 @@ export default function reducer(state = initialState, { type, collection, collec
         case REMOVE_COLLECTION:
             if (state.current === id) {
                 delete state.all[id]
+                if (Object.keys(state.all).length === 0) {
+                    return {
+                        ...state,
+                        all: { ...state.all },
+                        current: null,
+
+                        collectionLoaded: false,
+                        noCollectionsToDisplay: true,
+                    }
+                }
                 return {
                     ...state,
                     all: { ...state.all },
                     current: null,
-                    collectionLoaded: false
+                    collectionLoaded: false,
+                    noCollectionsToDisplay: false,
                 }
             } else {
                 delete state.all[id]
+                if (Object.keys(state.all).length === 0) {
+                    return {
+                        ...state,
+                        all: { ...state.all },
+                        noCollectionsToDisplay: true,
+                    }
+                }
                 return {
                     ...state,
                     all: { ...state.all },

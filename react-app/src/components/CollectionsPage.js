@@ -8,6 +8,7 @@ export default function CollectionsPage() {
 
     const collectionId = useSelector(state => state.collections.current) || null
     const collectionLoaded = useSelector(state => state.collections.collectionLoaded)
+    const noCollectionsToDisplay = useSelector(state => state.collections.noCollectionsToDisplay)
     const all = useSelector(state => state.collections.all)
 
     return (
@@ -29,15 +30,15 @@ export default function CollectionsPage() {
 
                 <div id="collections__right">
 
-                    {
-                        (collectionLoaded
-                            ? (<div>
-                                <div className="collection__header">{all[collectionId].name} </div>
-                                <ServicesList />
-                            </div>
-                            )
-                            : (<div className="collection__header">Choose a collection from the list</div>)
+                    {collectionLoaded
+                        ? (<div>
+                            <div className="collection__header">{all[collectionId].name} </div>
+                            <ServicesList />
+                        </div>
                         )
+                        : noCollectionsToDisplay
+                            ? (<div className="collection__header" > No collections to display </div>)
+                            : (<div className="collection__header">Choose a collection from the list</div>)
                     }
                 </div>
             </div>
