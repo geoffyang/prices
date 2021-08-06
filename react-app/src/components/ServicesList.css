@@ -4,6 +4,7 @@
     grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
     align-items: center;
     border-bottom: 1px solid lightgray;
+    font-weight: 700;
 }
 
 .services-list:hover {
