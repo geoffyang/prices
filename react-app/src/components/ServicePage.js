@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 
 import "./ServicePage.css"
-import { GetService, UnloadService } from "../store/service";
+import {
+    GetService,
+    // UnloadService
+} from "../store/service";
 import Comments from "./Comments"
 import CommentsForm from "./CommentsForm"
 
@@ -16,7 +19,7 @@ export default function ServicePage() {
 
     useEffect(() => {
         dispatch(GetService(id))
-        return () => dispatch(UnloadService())
+        // return () => dispatch(UnloadService())
     }, [dispatch, id])
 
     return (serviceLoaded
