@@ -10,6 +10,10 @@
     --gray: rgb(41, 41, 41)
 }
 
+*:visited {
+    color: inherit;
+}
+
 .form {
     display: flex;
     align-items: center;

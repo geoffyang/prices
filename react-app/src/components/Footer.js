@@ -11,10 +11,10 @@ export default function Footer() {
 
             <div className="service__middle-spacer"> </div>
 
-            <div id="footer__right">
+            <div id="footer__right" className="service__right-column">
                 <a href="https://www.linkedin.com/in/geoffreyy">Linkedin</a>
                 <a href="https://www.github.com/geoffyang/prices"> Github</a>
-                <a href="https://www.github.com/geoffyang"> Repo</a>
+                <a href="https://www.github.com/geoffyang">Code Repo</a>
             </div>
 
         </div>
