@@ -4,7 +4,7 @@ import { BsTrash } from 'react-icons/bs';
 import { DeleteService } from '../store/collection'
 import './ServicesList.css'
 
-export default function Services() {
+export default function ServicesList() {
     let history = useHistory()
     let dispatch = useDispatch()
 
@@ -34,7 +34,7 @@ export default function Services() {
                         }} /></span>
                     </div>
                 )))
-                : <h1> No services in this collection</h1>
+                : (<div> No services in this collection</div>)
             )}
 
         </>

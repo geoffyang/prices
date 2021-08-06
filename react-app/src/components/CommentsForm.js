@@ -27,7 +27,7 @@ export default function CommentsForm() {
                 ))}
             </div> */}
             < div >
-                <label id="insightful-comment">Provide an insightful comment </label>
+                <label id="insightful-comment">Provide your insight </label>
                 <input
                     type='text'
                     name='comment'

@@ -7,7 +7,12 @@
     font-family: "Founders Grotesk", sans-serif;
     /* font-size: 16px; */
     --yellow: rgb(252, 228, 45);
-    --gray: rgb(41, 41, 41)
+    --gray: rgb(41, 41, 41);
+    --blue: rgb(105, 147, 255);
+}
+
+*:visited {
+    color: inherit;
 }
 
 .form {
@@ -22,6 +27,7 @@ input {
     height: 40px;
     border-radius: 5px;
     margin-right: 1rem;
+    padding: 2px;
 }
 
 input:focus {
@@ -37,6 +43,6 @@ button {
     border: 0;
     outline: 0;
     height: 40px;
-    width: 60px;
+    width: 70px;
     border-radius: 5px;
 }

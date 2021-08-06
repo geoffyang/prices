@@ -10,19 +10,20 @@
     display: flex;
     flex-direction: row;
     /* align-items: center; */
-    background-color: lightslategray;
+    /* background-color: lightslategray; */
 }
 
 #footer__right>* {
     color: white;
     text-decoration: none;
+    width: 160px;
     padding-right: 4rem;
     /* background-color: salmon; */
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
-#footer__container *:visited {
-    color: inherit;
+#footer__container *:hover {
+    color: lightblue;
 }
 
 #footer__left {
@@ -34,4 +35,11 @@
     margin-left: 2.5rem;
     display: flex;
     padding-top: 50px;
+}
+
+.service__right-column {
+    width: 70%;
+    display: flex;
+    flex-flow: row wrap;
+    /* background-color: salmon; */
 }

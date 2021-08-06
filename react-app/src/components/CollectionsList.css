@@ -1,8 +1,15 @@
-.list__collection{
-    height:3rem;
-    padding-left:1rem;
+.list__collection {
+    height: 4rem;
+    border-bottom: 1px solid lightgray;
+    margin-left: 2.5rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border:2px solid black;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 2px solid black; */
+}
+
+.list__collection:hover {
+    background-color: var(--blue);
 }
