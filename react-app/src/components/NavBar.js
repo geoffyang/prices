@@ -15,7 +15,7 @@ const NavBar = () => {
       <div id="nav__inner-container">
         <div id="nav__left">
           <div className="nav__button">
-            <Link to='/' >
+            <Link to='/mycollections' >
               Hospital Prices
             </Link>
           </div>

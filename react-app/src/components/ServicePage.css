@@ -4,7 +4,6 @@
     align-items: center;
     /* border-bottom: 1px solid lightgray; */
     /* border-top: 1px solid lightgray; */
-    margin-top: 81px;
     margin-left: 2.5rem;
     font-weight: 300;
 }
@@ -82,10 +81,6 @@
     font-weight: 600;
     margin-left: 2.5rem;
     /* background-color: springgreen; */
-}
-
-#service__top {
-    border: 1px solid lightgray;
 }
 
 #service-description-code {

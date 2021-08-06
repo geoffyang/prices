@@ -26,6 +26,7 @@ input {
     height: 40px;
     border-radius: 5px;
     margin-right: 1rem;
+    padding: 2px;
 }
 
 input:focus {
@@ -41,6 +42,6 @@ button {
     border: 0;
     outline: 0;
     height: 40px;
-    width: 60px;
+    width: 70px;
     border-radius: 5px;
 }

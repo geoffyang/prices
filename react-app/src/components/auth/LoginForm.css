@@ -1,0 +1,20 @@
+#login-form-container {
+    position: absolute;
+    right: 0;
+    z-index: 5;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    margin-top: 81px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+}
+
+#login-form-email {
+    padding-top: 4rem;
+}
+
+#login-form-container * {
+    border: 1px solid black;
+    width: 500px;
+}

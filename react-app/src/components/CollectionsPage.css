@@ -1,8 +1,9 @@
 #collections__container {
     display: flex;
+    border: 1px solid transparent;
     flex-flow: row nowrap;
     /* background-color: blue; */
-    border:4px solid black;
+    /* border: 1px solid black; */
 }
 
 #collections__left {
@@ -12,4 +13,14 @@
 
 #collections__right {
     width: 70%;
+}
+
+#breadcrumbs {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    /* border-bottom: 1px solid lightgray; */
+    /* border-top: 1px solid lightgray; */
+    margin-left: 2.5rem;
+    font-weight: 300;
 }

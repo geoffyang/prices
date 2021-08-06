@@ -12,6 +12,8 @@ export default function CollectionsPage() {
 
     return (
         <div id="collections__container">
+            <div id="breadcrumbs">My Collections</div>
+
             < div id="collections__left" style={{ backgroundColor: "lightblue" }}>
                 <div id="collections__left-form">
                     <CollectionForm />
@@ -29,7 +31,7 @@ export default function CollectionsPage() {
                         ? (<div>
                             <h3>{all[collectionId].name} </h3>
                             <Services />
-                            </div>
+                        </div>
                         )
                         : <h1>Choose a collection from the list</h1>
                     )
