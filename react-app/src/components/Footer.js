@@ -6,7 +6,7 @@ export default function Footer() {
         <div id='footer__container'>
 
             <div id="footer__left">
-                Made by Geoffrey Yang
+                Made by <br />Geoffrey Yang
             </div>
 
             <div className="service__middle-spacer"> </div>

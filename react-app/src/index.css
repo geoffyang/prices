@@ -7,7 +7,8 @@
     font-family: "Founders Grotesk", sans-serif;
     /* font-size: 16px; */
     --yellow: rgb(252, 228, 45);
-    --gray: rgb(41, 41, 41)
+    --gray: rgb(41, 41, 41);
+    --blue: rgb(105, 147, 255);
 }
 
 *:visited {

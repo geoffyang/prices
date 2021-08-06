@@ -1,0 +1,31 @@
+#collection-form__container {
+    margin-left: 2.5rem;
+    margin-bottom: 1rem;
+    /* border: 1px solid red */
+}
+
+#collection-form__label {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    width: 100%;
+    /* background-color: red; */
+}
+
+#collection-form__flex {
+    display: flex;
+    flex-direction: column;
+}
+
+#collection-form__flex input {
+    width: 100%;
+    margin-bottom: .7 rem;
+    justify-content: space-around;
+}
+
+#collection-form__flex button {
+    width: 100%;
+}
+
+/* * {
+    border: 1px solid red;
+} */

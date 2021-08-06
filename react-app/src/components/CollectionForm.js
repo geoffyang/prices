@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
+
 import { PostCollection } from '../store/collection';
+import './CollectionForm.css'
 
 
 export default function CollectionForm() {
@@ -18,23 +20,27 @@ export default function CollectionForm() {
 
     return (
 
-        <form onSubmit={formSubmitFunc} style={{ width: "100%" }}>
+        <form onSubmit={formSubmitFunc} id="collection-form__container">
             {/* <div>
                 {errors.map((err, ind) => (
                     <div key={ind}>{err}</div>
                 ))}
             </div> */}
-            <div>
-                <label>Create a collection </label>
+
+            <div id="collection-form__label">Create a collection </div>
+            <div id="collection-form__flex">
+
                 <input
                     type='text'
                     name='name'
                     autoFocus
+                    autoComplete='off'
                     placeholder='Your Collection Name'
                     onChange={({ target: { value } }) => setCollectionName(value)}
-                    value={collectionName}/>
+                    value={collectionName} />
+                <button type='submit'>Submit</button>
             </div>
-            <button type='submit'>Submit</button>
+
         </form>
     )
 }

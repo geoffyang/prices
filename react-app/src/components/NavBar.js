@@ -13,13 +13,17 @@ const NavBar = () => {
   return (
     <nav id="nav__container">
       <div id="nav__inner-container">
+
+
         <div id="nav__left">
-          <div className="nav__button">
-            <Link to='/mycollections' >
-              Hospital Prices
-            </Link>
-          </div>
+
+          <Link to='/mycollections' >
+            Hospital Prices
+          </Link>
+
         </div>
+
+
         <div id="nav__right">
           <div className="nav__button">
             <Link to='/mycollections' >
@@ -47,6 +51,7 @@ const NavBar = () => {
                   Sign Up
                 </Link>
               </div></>)}
+
 
           {(user != null) && (
             <div className="nav__button">

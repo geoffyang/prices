@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { BsTrash, BsPencil } from 'react-icons/bs';
 
 import { GetCollections, GetServices, UnloadCollections, DeleteCollection, EditCollectionName } from "../store/collection"
-import {Modal} from '../context/Modal'
+import { Modal } from '../context/Modal'
 import './CollectionsList.css'
 
 export default function CollectionsList() {
@@ -15,7 +15,7 @@ export default function CollectionsList() {
     const [collectionName, setCollectionName] = useState("")
 
     const allCollections = useSelector(state => state.collections.all)
-    
+
     useEffect(() => {
         dispatch(GetCollections());
         return () => dispatch(UnloadCollections());
@@ -45,7 +45,7 @@ export default function CollectionsList() {
                     key={i}
                     onClick={() => { loadCollection(c.id) }}
                 >
-                    {c.name} ------ {c.id}
+                    {c.name}
                     <div id="list__collection-icons">
                         <BsPencil onClick={(e) => {
                             e.stopPropagation()
