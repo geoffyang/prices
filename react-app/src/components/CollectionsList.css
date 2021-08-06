@@ -1,6 +1,6 @@
 .list__collection {
     height: 4rem;
-    border-bottom: 1px solid lightgray;
+    /* border-bottom: 1px solid lightgray; */
     margin-left: 2.5rem;
     padding-left: .5rem;
     padding-right: .5rem;
