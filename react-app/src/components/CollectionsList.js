@@ -45,8 +45,10 @@ export default function CollectionsList() {
                     key={i}
                     onClick={() => { loadCollection(c.id) }}
                 >
-                    {c.name}
-                    <div id="list__collection-icons">
+                    <div >
+                        {c.name}
+                    </div>
+                    <div className="list__collection-icons">
                         <BsPencil onClick={(e) => {
                             e.stopPropagation()
                             setShowModal(true)

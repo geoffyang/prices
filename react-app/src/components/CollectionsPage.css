@@ -16,6 +16,7 @@
 
 #collections__container {
     padding-top: 4rem;
+    padding-bottom: 4rem;
     display: flex;
     /* background-color: var(--blue); */
     min-height: 350px;
