@@ -1,5 +1,5 @@
 .services-list {
-    height: 70px;
+    height: 80px;
     display: grid;
     grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
     align-items: center;
