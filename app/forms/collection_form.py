@@ -7,6 +7,4 @@ class NewCollection(FlaskForm):
     name = StringField('Name', validators=[
         DataRequired(),
         Length(0, 40, "Please keep message under 40 characters")
-
-
     ])

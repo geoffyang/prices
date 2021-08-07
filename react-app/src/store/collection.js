@@ -134,7 +134,8 @@ export default function reducer(state = initialState, { type, collection, collec
                     services: services,
                     servicesLoaded: true,
                     collectionLoaded: true,
-                    current: id
+                    current: id,
+                    showErrors: false,
                 }
             }
             return {
@@ -143,7 +144,8 @@ export default function reducer(state = initialState, { type, collection, collec
                 services: null,
                 servicesLoaded: false,
                 collectionLoaded: true,
-                current: id
+                current: id,
+                showErrors: false,
             }
         case REMOVE_SERVICE:
             delete state.services[id]

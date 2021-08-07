@@ -34,7 +34,6 @@ export default function CollectionForm() {
             <div id="collection-form__label">Create a collection </div>
 
 
-
             <form onSubmit={formSubmitFunc} >
                 <div id="collection-form__flex">
                     <input

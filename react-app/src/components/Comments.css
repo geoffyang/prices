@@ -8,7 +8,7 @@
     padding-bottom: .5rem;
     /* box-shadow: rgba(0, 0, 0, 0.01) 0px 12px 34px 0px; */
     /* background-color: dodgerblue; */
-    /* border:1px solid darkblue */
+    /* border: 1px solid darkblue */
 }
 
 .color {
@@ -17,14 +17,16 @@
     /* border-bottom: 1px solid rgb(192, 192, 192, 0.2); */
 }
 
-.comments__text {
-    margin-bottom: 5px;
-}
-
 .text-time {
     /* background-color: red; */
     width: 70%;
     max-width: 500px;
+}
+
+.comments__text {
+    margin-bottom: 5px;
+    overflow-wrap: break-word;
+    /* border: 1px solid black; */
 }
 
 .comments__time {
@@ -34,4 +36,5 @@
 
 .conditional-buttons {
     padding-right: 2rem;
+    /* border: 1px solid black; */
 }
