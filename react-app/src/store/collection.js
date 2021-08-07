@@ -5,6 +5,8 @@ const UNLOAD_CURRENT_COLLECTION = "collections/UNLOAD_ONE"
 const REMOVE_COLLECTION = "collections/REMOVE_ONE"
 const LOAD_SERVICES = 'collections/LOAD_SERVICES'
 const REMOVE_SERVICE = 'collections/REMOVE_SERVICE'
+const SHOW_ERROR_BOX = 'collections/SHOW_ERROR_BOX'
+const REMOVE_ERROR_BOX = 'collections/REMOVE_ERROR_BOX'
 
 const loadCollections = (collections) => ({
     type: LOAD_COLLECTIONS,
@@ -104,6 +106,13 @@ const removeService = id => ({
     id
 })
 
+export const ShowErrorBox = () => ({
+    type: SHOW_ERROR_BOX
+})
+export const RemoveErrorBox = () => ({
+    type: REMOVE_ERROR_BOX
+})
+
 const initialState = {
     all: {},
     allLoaded: false,
@@ -111,7 +120,8 @@ const initialState = {
     services: {},
     servicesLoaded: false,
     collectionLoaded: false,
-    noCollectionsToDisplay: false
+    noCollectionsToDisplay: false,
+    showErrors: false,
 }
 
 export default function reducer(state = initialState, { type, collection, collections, id, service, services }) {
@@ -233,7 +243,20 @@ export default function reducer(state = initialState, { type, collection, collec
                     all: { ...state.all },
                 }
             }
-
+        case SHOW_ERROR_BOX:
+            return {
+                ...state,
+                all: { ...state.all },
+                services: { ...state.services },
+                showErrors: true,
+            };
+        case REMOVE_ERROR_BOX:
+            return {
+                ...state,
+                all: { ...state.all },
+                services: { ...state.services },
+                showErrors: false,
+            };
         default:
             return state;
     }

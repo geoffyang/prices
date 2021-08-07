@@ -5,10 +5,17 @@
     padding-left: .5rem;
     padding-right: .5rem;
     display: flex;
+    max-width: 100%;
     justify-content: space-between;
     align-items: center;
-    color: var(--gray)
+    color: var(--gray);
     /* border: 2px solid black; */
+}
+
+.list__collection-name {
+    width: 80%;
+    overflow-wrap: break-word;
+    /* border: 1px solid darkgreen; */
 }
 
 .list__collection:hover {

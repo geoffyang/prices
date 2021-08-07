@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
-import { PostCollection } from '../store/collection';
+import { PostCollection, ShowErrorBox, RemoveErrorBox } from '../store/collection';
 import './CollectionForm.css'
 
 
@@ -10,13 +10,20 @@ export default function CollectionForm() {
     const [errors, setErrors] = useState([])
     const [collectionName, setCollectionName] = useState("")
 
+    const showErrorBox = useSelector(state => state.collections.showErrors)
+
+
     const formSubmitFunc = async (e) => {
         e.preventDefault();
         const data = await dispatch(PostCollection(collectionName))
         if (data) {
             setErrors(data)
+            dispatch(ShowErrorBox());
         }
-        setCollectionName("")
+        else {
+            dispatch(RemoveErrorBox())
+            setCollectionName("")
+        }
     }
 
 
@@ -26,7 +33,23 @@ export default function CollectionForm() {
 
             <div id="collection-form__label">Create a collection </div>
 
-            {errors
+
+
+            <form onSubmit={formSubmitFunc} >
+                <div id="collection-form__flex">
+                    <input
+                        type='text'
+                        name='Collection Name'
+                        autoFocus
+                        autoComplete='off'
+                        placeholder='Name (40 character limit)'
+                        onChange={({ target: { value } }) => setCollectionName(value)}
+                        value={collectionName} />
+                    <button type='submit'>Submit</button>
+                </div>
+            </form>
+
+            {showErrorBox
                 ? (<div id="collection-form__errors"
                     style={{ color: 'red' }}>
                     {errors.map((err, ind) => (
@@ -36,21 +59,6 @@ export default function CollectionForm() {
                 : null
             }
 
-            <form onSubmit={formSubmitFunc} >
-
-                <div id="collection-form__flex">
-                    <input
-                        type='text'
-                        name='Collection Name'
-                        autoFocus
-                        autoComplete='off'
-                        placeholder='Collection Name (40 character limit)'
-                        onChange={({ target: { value } }) => setCollectionName(value)}
-                        value={collectionName} />
-                    <button type='submit'>Submit</button>
-                </div>
-
-            </form>
         </div>
     )
 }

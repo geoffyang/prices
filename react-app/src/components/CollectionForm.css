@@ -1,7 +1,7 @@
 #collection-form__container {
     margin-left: 2.5rem;
     margin-bottom: 1rem;
-    border: 1px solid red
+    /* border: 1px solid red */
 }
 
 #collection-form__label {
@@ -12,7 +12,8 @@
 }
 
 #collection-form__errors {
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: .75rem;
 }
 
 #collection-form__flex input {
