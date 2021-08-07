@@ -5,20 +5,32 @@ from app.forms import NewComment
 service_routes = Blueprint('services', __name__)
 
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 # GET DELETE /api/services/<id>/
+
+
 @service_routes.route("/<id>/", methods=['GET', 'DELETE'])
 @login_required
 def getService(id):
     # try:
-        service = Service.query.filter_by(id=id).first()
-        if request.method == 'GET':
-            return service.to_dict()
-        elif request.method == 'DELETE':
-            db.session.delete(service)
-            db.session.commit()
-            return {"deleted": id}
+    service = Service.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return service.to_dict()
+    elif request.method == 'DELETE':
+        db.session.delete(service)
+        db.session.commit()
+        return {"deleted": id}
     # except:
-        # return {}
+    # return {}
 
 
 # POST /api/services/<id>/comments/
@@ -37,15 +49,4 @@ def addComment(service_id):
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict()
-    return "bad comment input"
-
-
-# # PUT DELETE /api/services/<service_id>/comments/<comment_id>/
-# @service_routes.route("/<service_id>/comments/<comment_id>", methods=['PUT', 'DELETE'])
-# @login_required
-# def editComments(service_id, comment_id):
-#     comment = Comment.query.filter_by(id=comment_id)
-#     if request.method == "DELETE":
-#         pass
-#     elif request.method == "PUT":
-#         pass
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

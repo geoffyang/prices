@@ -7,7 +7,19 @@ from sqlalchemy.orm import joinedload
 collection_routes = Blueprint('collections', __name__)
 
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 # GET POST /api/collections/
+
+
 @collection_routes.route('/', methods=['GET', 'POST'])
 @login_required
 def getCollections():
@@ -30,7 +42,7 @@ def getCollections():
                 "name": new_collection.name,
                 "user_id": new_collection.user_id
             }
-        return "bad collection input"
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # GET DELETE /api/collections/<id>/
@@ -88,28 +100,6 @@ def getServicesInCollection(collection_id):
     #         } for row in rows}
 
     #     return services
-
-    # attempt 1
-    # services = Service.query.filter(
-    #     Service.services.any(id={Collection.id})).all()
-
-    # attempt 2
-    # services = Collection.query.filter(Collection.id==1).options(joinedload(Collection.services)).all()
-
-    # attempt 3
-    # services = db.session.query(Collection) \
-    #                     .filter(Collection.id==1) \
-    #                     .options(joinedload(Collection.services))
-
-    # attempt 4
-    # services = Service.query.filter(Service.collections.any(id={Collection.id})).all()
-
-    # attempt 5
-    # services = Collection.query.get(collection_id).services
-
-    # return {service.id:service.to_dict() for service in services}
-
-    # attempt 6
 
     # working return 3
     collection = Collection.query.get(collection_id)

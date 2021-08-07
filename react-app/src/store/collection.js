@@ -41,6 +41,14 @@ export const PostCollection = (name) => async dispatch => {
     if (response.ok) {
         const newCollection = await response.json();
         dispatch(updateCollection(newCollection))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occured, please try again"]
     }
 }
 

@@ -7,37 +7,42 @@ import './CommentsForm.css'
 
 export default function CommentsForm() {
     const dispatch = useDispatch();
-    // const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([])
     const [comment, setComment] = useState("")
     const serviceId = useSelector(state => state.service.currentServiceObj.id)
 
     const formSubmitFunc = async (e) => {
         e.preventDefault();
-        await dispatch(PostComment(comment, serviceId))
+        const data = await dispatch(PostComment(comment, serviceId))
+        if (data) {
+            setErrors(data)
+        }
         setComment("")
     }
 
 
     return (
 
-        <form onSubmit={formSubmitFunc} className='form'>
-            {/* <div>
+        <form onSubmit={formSubmitFunc} className='form comments-form'>
+            <div id="comment-form-errors" style={{ color: 'red' }}>
                 {errors.map((err, ind) => (
                     <div key={ind}>{err}</div>
                 ))}
-            </div> */}
-            < div >
-                <label id="insightful-comment">Provide your insight </label>
-                <input
-                    type='text'
-                    name='comment'
-                    autoFocus
-                    autoComplete="off"
-                    placeholder='This service was...'
-                    onChange={({ target: { value } }) => setComment(value)}
-                    value={comment} />
-            </div >
-            <button type='submit'>Submit</button>
+            </div>
+            <div id="input-area-horizontal">
+                < div >
+                    <label id="insightful-comment">Provide your insight </label>
+                    <input
+                        type='text'
+                        name='comment'
+                        autoFocus
+                        autoComplete="off"
+                        placeholder='250 character limit'
+                        onChange={({ target: { value } }) => setComment(value)}
+                        value={comment} />
+                </div >
+                <button type='submit'>Submit</button>
+            </div>
         </form >
     )
 }

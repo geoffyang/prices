@@ -10,7 +10,7 @@ export default function DemoButton() {
     }
 
     return (
-        <button id="demo-user-button" onClick={loginDemoUser}>
+        <button id="demo-user-button" onClick={loginDemoUser} style={{ backgroundColor: "blueviolet", color: "white" }}>
             Demo User
         </button>)
 }

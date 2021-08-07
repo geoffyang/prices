@@ -13,4 +13,5 @@
 
 .list__collection:hover {
     background-color: var(--blue);
+    cursor: pointer;
 }

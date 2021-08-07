@@ -21,7 +21,7 @@ export default function ServicesList() {
             {(servicesLoaded
                 ? (Object.values(services).map((s, i) => (
                     <div key={i}
-                        className={"services-list"}
+                        className={"services-list " + (i % 2 === 0 ? 'blue' : "")}
                         onClick={() => redirect_single_service(s.id)}
                     >
                         <span>{s.billing_code}</span>

@@ -1,3 +1,18 @@
 #insightful-comment {
     font-weight: 700;
 }
+
+.comments-form {
+    display: flex;
+    flex-direction: column;
+    /* background-color: darkblue; */
+    width: 85%;
+}
+
+#input-area-horizontal, #comment-form-errors {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    /* background-color: blue; */
+}
