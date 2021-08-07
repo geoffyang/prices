@@ -23,24 +23,26 @@ export default function CommentsForm() {
 
     return (
 
-        <form onSubmit={formSubmitFunc} className='form'>
+        <form onSubmit={formSubmitFunc} className='form comments-form'>
             <div id="comment-form-errors" style={{ color: 'red' }}>
                 {errors.map((err, ind) => (
                     <div key={ind}>{err}</div>
                 ))}
             </div>
-            < div >
-                <label id="insightful-comment">Provide your insight </label>
-                <input
-                    type='text'
-                    name='comment'
-                    autoFocus
-                    autoComplete="off"
-                    placeholder='250 character limit...'
-                    onChange={({ target: { value } }) => setComment(value)}
-                    value={comment} />
-            </div >
-            <button type='submit'>Submit</button>
+            <div id="input-area-horizontal">
+                < div >
+                    <label id="insightful-comment">Provide your insight </label>
+                    <input
+                        type='text'
+                        name='comment'
+                        autoFocus
+                        autoComplete="off"
+                        placeholder='250 character limit'
+                        onChange={({ target: { value } }) => setComment(value)}
+                        value={comment} />
+                </div >
+                <button type='submit'>Submit</button>
+            </div>
         </form >
     )
 }
