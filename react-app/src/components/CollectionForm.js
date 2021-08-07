@@ -22,23 +22,29 @@ export default function CollectionForm() {
 
     return (
         <div id="collection-form__container">
-            <div id="collection-form__errors"
-                style={{ color: 'red' }}>
-                {errors.map((err, ind) => (
-                    <div key={ind}>{err}</div>
-                ))}
-            </div>
+
+
+            <div id="collection-form__label">Create a collection </div>
+
+            {errors
+                ? (<div id="collection-form__errors"
+                    style={{ color: 'red' }}>
+                    {errors.map((err, ind) => (
+                        <div key={ind}>{err}</div>
+                    ))}
+                </div>)
+                : null
+            }
 
             <form onSubmit={formSubmitFunc} >
-                <div id="collection-form__label">Create a collection </div>
-                <div id="collection-form__flex">
 
+                <div id="collection-form__flex">
                     <input
                         type='text'
                         name='Collection Name'
                         autoFocus
                         autoComplete='off'
-                        placeholder='Your Collection Name (40 character limit)'
+                        placeholder='Collection Name (40 character limit)'
                         onChange={({ target: { value } }) => setCollectionName(value)}
                         value={collectionName} />
                     <button type='submit'>Submit</button>

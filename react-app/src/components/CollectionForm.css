@@ -1,7 +1,7 @@
 #collection-form__container {
     margin-left: 2.5rem;
     margin-bottom: 1rem;
-    /* border: 1px solid red */
+    border: 1px solid red
 }
 
 #collection-form__label {
@@ -11,9 +11,8 @@
     /* background-color: red; */
 }
 
-#collection-form__flex {
-    display: flex;
-    flex-direction: column;
+#collection-form__errors {
+    margin-bottom: 1rem;
 }
 
 #collection-form__flex input {
@@ -24,7 +23,6 @@
 
 #collection-form__flex button {
     width: 100%;
-    color: blueviolet
 }
 
 /* * {
