@@ -4,7 +4,7 @@ import { BsTrash, BsPencil } from 'react-icons/bs';
 
 import { Modal } from '../context/Modal'
 import "./Comments.css"
-import { DeleteComment, EditComment, ShowEditErrorBox, RemoveEditErrorBox } from "../store/service";
+import { DeleteComment, EditComment, ShowEditErrorBox, RemoveEditErrorBox, RemoveErrorBox } from "../store/service";
 
 
 
@@ -47,7 +47,13 @@ export default function Comments() {
                     ? (<div>
                         {
                             Object.values(comments).map((c, i) => (
-                                <div key={i} className={"comments-div " + (user.id === c.user_id ? 'color' : 'noColor')}>
+                                <div key={i}
+                                    className={"comments-div " + (user.id === c.user_id ? 'color' : 'noColor')}
+                                    onClick={() => {
+                                        setErrors([])
+                                        dispatch(RemoveErrorBox())
+                                    }}
+                                >
                                     <div className="text-time">
                                         <div className={"comments__text"}>
                                             {c.comment}</div>
@@ -81,7 +87,10 @@ export default function Comments() {
             </div>
 
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                <Modal onClose={() => {
+                    setShowModal(false)
+                    setErrors([])
+                }}>
                     <form onSubmit={handleEdit} style={{ width: "100%" }}>
                         <input
                             type='text'

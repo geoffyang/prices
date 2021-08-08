@@ -1,7 +1,8 @@
 #collection-form__container {
     margin-left: 2.5rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 0.5rem; */
     /* background-color: cadetblue; */
+    height: 8.5rem;
 }
 
 #collection-form__label {
@@ -12,8 +13,10 @@
 }
 
 #collection-form__errors {
-    margin-top: 1rem;
+    margin-top: .5rem;
     font-size: .75rem;
+    /* background-color: salmon; */
+    height: 1rem;
 }
 
 #collection-form__flex input {

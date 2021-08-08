@@ -24,4 +24,7 @@
     position: absolute;
     background-color: none;
     border-radius: 10px;
+    width: 300px;
+    height: 20%;
+    /* background-color: blue; */
 }

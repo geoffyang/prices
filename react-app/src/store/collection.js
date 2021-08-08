@@ -245,9 +245,9 @@ export default function reducer(state = initialState, { type, collection, collec
                         ...state,
                         all: { ...state.all },
                         current: null,
-
                         collectionLoaded: false,
                         noCollectionsToDisplay: true,
+                        showErrors: false,
                     }
                 }
                 return {
@@ -256,6 +256,7 @@ export default function reducer(state = initialState, { type, collection, collec
                     current: null,
                     collectionLoaded: false,
                     noCollectionsToDisplay: false,
+                    showErrors: false,
                 }
             } else {
                 delete state.all[id]
@@ -264,11 +265,13 @@ export default function reducer(state = initialState, { type, collection, collec
                         ...state,
                         all: { ...state.all },
                         noCollectionsToDisplay: true,
+                        showErrors: false,
                     }
                 }
                 return {
                     ...state,
                     all: { ...state.all },
+                    showErrors: false,
                 }
             }
         case SHOW_ERROR_BOX:
