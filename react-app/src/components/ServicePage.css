@@ -91,10 +91,11 @@
 #comments-vertical {
     display: flex;
     flex-direction: column;
+    /* border: 3px solid red; */
 }
 
 #comments-form {
-    height: 70px;
+    height: 80px;
     margin-right: 3rem;
     /* background-color: lightsalmon; */
 }

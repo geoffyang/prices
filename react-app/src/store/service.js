@@ -2,9 +2,13 @@ const LOAD_SERVICE = "service/LOAD_SERVICE"
 const UNLOAD_SERVICE = "service/UNLOAD_SERVICE"
 const UPDATE_COMMENT = "service/UPDATE_COMMENT"
 const REMOVE_COMMENT = "service/REMOVE_COMMENT"
+const SHOW_ERROR_BOX = 'service/SHOW_ERROR_BOX'
+const REMOVE_ERROR_BOX = 'service/REMOVE_ERROR_BOX'
+const SHOW_EDIT_ERROR_BOX = 'service/SHOW_EDIT_ERROR_BOX'
+const REMOVE_EDIT_ERROR_BOX = 'service/REMOVE_EDIT_ERROR_BOX'
 
 
-/////////////////////get///////////////////////////
+///////////////////// get ///////////////////////////
 
 export const GetService = (id) => async dispatch => {
     const response = await fetch(`/api/services/${id}/`)
@@ -26,7 +30,7 @@ export const UnloadService = () => ({
     type: UNLOAD_SERVICE
 })
 
-/////////////////////post//////////////////////////
+///////////////////// post //////////////////////////
 
 export const PostComment = (comment, serviceId) => async dispatch => {
     const response = await fetch(`/api/services/${serviceId}/comments/`, {
@@ -53,7 +57,7 @@ const updateComment = comment => ({
     comment
 })
 
-//////////////////////delete///////////////////////
+////////////////////// delete ///////////////////////
 
 export const DeleteComment = (id) => async dispatch => {
     await fetch(`/api/comments/${id}/`, {
@@ -67,7 +71,7 @@ const removeComment = id => ({
     id
 })
 
-//////////////////////edit//////////////////////////
+////////////////////// edit //////////////////////////
 
 export const EditComment = ({ comment, id }) => async dispatch => {
     const response = await fetch(`/api/comments/${id}/`, {
@@ -78,8 +82,33 @@ export const EditComment = ({ comment, id }) => async dispatch => {
     if (response.ok) {
         const editedComment = await response.json()
         dispatch(updateComment(editedComment))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        } else {
+            return ["An error occured, please try again"]
+        }
     }
 }
+
+
+////////////////////// errors ////////////////////////
+
+export const ShowErrorBox = () => ({
+    type: SHOW_ERROR_BOX
+})
+export const RemoveErrorBox = () => ({
+    type: REMOVE_ERROR_BOX
+})
+export const ShowEditErrorBox = () => ({
+    type: SHOW_EDIT_ERROR_BOX
+})
+export const RemoveEditErrorBox = () => ({
+    type: REMOVE_EDIT_ERROR_BOX
+})
+
 
 
 ///////////////////////////////////////////////////
@@ -89,7 +118,9 @@ const initialState = {
         comments: {}
     },
     serviceLoaded: null,
-    commentsLoaded: null
+    commentsLoaded: null,
+    showErrors: false,
+    showEditErrors: false,
 }
 
 export default function reducer(state = initialState, { service, type, comment, id }) {
@@ -104,7 +135,8 @@ export default function reducer(state = initialState, { service, type, comment, 
                         }
                     },
                     serviceLoaded: true,
-                    commentsLoaded: true
+                    commentsLoaded: true,
+                    showEditErrors: state.showEditErrors,
                 }
             }
             return {
@@ -153,6 +185,42 @@ export default function reducer(state = initialState, { service, type, comment, 
                     comments: {}
                 },
                 commentsLoaded: null
+            }
+        case SHOW_ERROR_BOX:
+            return {
+                ...state,
+                currentServiceObj: {
+                    ...state.currentServiceObj,
+                    comments: { ...state.currentServiceObj.comments }
+                },
+                showErrors: true,
+            }
+        case REMOVE_ERROR_BOX:
+            return {
+                ...state,
+                currentServiceObj: {
+                    ...state.currentServiceObj,
+                    comments: { ...state.currentServiceObj.comments }
+                },
+                showErrors: false,
+            }
+        case SHOW_EDIT_ERROR_BOX:
+            return {
+                ...state,
+                currentServiceObj: {
+                    ...state.currentServiceObj,
+                    comments: { ...state.currentServiceObj.comments }
+                },
+                showEditErrors: true,
+            }
+        case REMOVE_EDIT_ERROR_BOX:
+            return {
+                ...state,
+                currentServiceObj: {
+                    ...state.currentServiceObj,
+                    comments: { ...state.currentServiceObj.comments }
+                },
+                showEditErrors: false,
             }
         default:
             return state;

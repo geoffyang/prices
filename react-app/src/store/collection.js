@@ -5,6 +5,10 @@ const UNLOAD_CURRENT_COLLECTION = "collections/UNLOAD_ONE"
 const REMOVE_COLLECTION = "collections/REMOVE_ONE"
 const LOAD_SERVICES = 'collections/LOAD_SERVICES'
 const REMOVE_SERVICE = 'collections/REMOVE_SERVICE'
+const SHOW_ERROR_BOX = 'collections/SHOW_ERROR_BOX'
+const REMOVE_ERROR_BOX = 'collections/REMOVE_ERROR_BOX'
+const SHOW_EDIT_ERROR_BOX = 'collections/SHOW_EDIT_ERROR_BOX'
+const REMOVE_EDIT_ERROR_BOX = 'collections/REMOVE_EDIT_ERROR_BOX'
 
 const loadCollections = (collections) => ({
     type: LOAD_COLLECTIONS,
@@ -74,6 +78,14 @@ export const EditCollectionName = ({ name, id }) => async dispatch => {
     if (response.ok) {
         const collection = await response.json()
         dispatch(updateCollection(collection))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        } else {
+            return ["An error occured, please try again"]
+        }
     }
 }
 
@@ -104,6 +116,26 @@ const removeService = id => ({
     id
 })
 
+////////////////////// errors ////////////////////////
+
+
+export const ShowErrorBox = () => ({
+    type: SHOW_ERROR_BOX
+})
+export const RemoveErrorBox = () => ({
+    type: REMOVE_ERROR_BOX
+})
+export const ShowEditErrorBox = () => ({
+    type: SHOW_EDIT_ERROR_BOX
+})
+export const RemoveEditErrorBox = () => ({
+    type: REMOVE_EDIT_ERROR_BOX
+})
+
+///////////////////////////////////////////////////
+
+
+
 const initialState = {
     all: {},
     allLoaded: false,
@@ -111,7 +143,9 @@ const initialState = {
     services: {},
     servicesLoaded: false,
     collectionLoaded: false,
-    noCollectionsToDisplay: false
+    noCollectionsToDisplay: false,
+    showErrors: false,
+    showEditErrors: false,
 }
 
 export default function reducer(state = initialState, { type, collection, collections, id, service, services }) {
@@ -124,7 +158,9 @@ export default function reducer(state = initialState, { type, collection, collec
                     services: services,
                     servicesLoaded: true,
                     collectionLoaded: true,
-                    current: id
+                    current: id,
+                    showErrors: false,
+                    showEditErrors: false,
                 }
             }
             return {
@@ -133,7 +169,9 @@ export default function reducer(state = initialState, { type, collection, collec
                 services: null,
                 servicesLoaded: false,
                 collectionLoaded: true,
-                current: id
+                current: id,
+                showErrors: false,
+                showEditErrors: false,
             }
         case REMOVE_SERVICE:
             delete state.services[id]
@@ -207,9 +245,9 @@ export default function reducer(state = initialState, { type, collection, collec
                         ...state,
                         all: { ...state.all },
                         current: null,
-
                         collectionLoaded: false,
                         noCollectionsToDisplay: true,
+                        showErrors: false,
                     }
                 }
                 return {
@@ -218,6 +256,7 @@ export default function reducer(state = initialState, { type, collection, collec
                     current: null,
                     collectionLoaded: false,
                     noCollectionsToDisplay: false,
+                    showErrors: false,
                 }
             } else {
                 delete state.all[id]
@@ -226,14 +265,43 @@ export default function reducer(state = initialState, { type, collection, collec
                         ...state,
                         all: { ...state.all },
                         noCollectionsToDisplay: true,
+                        showErrors: false,
                     }
                 }
                 return {
                     ...state,
                     all: { ...state.all },
+                    showErrors: false,
                 }
             }
-
+        case SHOW_ERROR_BOX:
+            return {
+                ...state,
+                all: { ...state.all },
+                services: { ...state.services },
+                showErrors: true,
+            };
+        case REMOVE_ERROR_BOX:
+            return {
+                ...state,
+                all: { ...state.all },
+                services: { ...state.services },
+                showErrors: false,
+            };
+        case SHOW_EDIT_ERROR_BOX:
+            return {
+                ...state,
+                all: { ...state.all },
+                services: { ...state.services },
+                showEditErrors: true,
+            };
+        case REMOVE_EDIT_ERROR_BOX:
+            return {
+                ...state,
+                all: { ...state.all },
+                services: { ...state.services },
+                showEditErrors: false,
+            };
         default:
             return state;
     }

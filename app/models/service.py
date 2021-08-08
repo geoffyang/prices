@@ -36,19 +36,17 @@ class Service(db.Model):
         back_populates="services"
     )
 
-
-
     def to_dict(self):
         return{
             "id": self.id,
             "billing_code": self.billing_code,
             "cpt_code": self.cpt_code,
             "service_description": self.service_description,
-            "list_price": round(float(self.list_price),2),
-            "discounted_price": round(float(self.discounted_price),2),
+            "list_price": round(float(self.list_price), 2),
+            "discounted_price": round(float(self.discounted_price), 2),
             "domain": self.domain,
             "subdomain": self.subdomain,
             "hospital_id": self.hospital_id,
             "status": self.status,
-            "comments":{c.id:c.to_dict() for c in self.comments}
+            "comments": {c.id: c.to_dict() for c in self.comments}
         }

@@ -14,7 +14,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
     return errorMessages
 
 
@@ -32,7 +32,6 @@ def deleteComment(id):
     elif request.method == 'PUT':
         form = NewComment()
         form['csrf_token'].data = request.cookies['csrf_token']
-        print(">>>>>>>>>>>>>>>>>>>>>>>put request", form.data)
         if form.validate_on_submit():
             setattr(comment, "comment", form.data['comment'])
             setattr(comment, "updated_at", datetime.utcnow())

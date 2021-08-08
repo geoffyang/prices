@@ -29,5 +29,5 @@ class SignUpForm(FlaskForm):
     ])
     password = StringField('password', validators=[
         DataRequired(),
-        Length(6, -1, "Password needs to be 6 characters")
+        Length(10, -1, "Password needs to be 10 characters")
     ])
