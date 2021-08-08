@@ -6,6 +6,6 @@ from wtforms.validators import DataRequired, Length
 class NewComment(FlaskForm):
     comment = StringField('Comment', validators=[
         DataRequired(),
-        Length(0, 2, "Please keep the comment under 250 characters")
+        Length(0, 250, "Please keep the comment under 250 characters")
     ])
     # submit = SubmitField()
