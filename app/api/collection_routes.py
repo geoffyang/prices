@@ -60,10 +60,7 @@ def getCollection(id):
     elif request.method == 'PUT':
         form = NewCollection()
         form['csrf_token'].data = request.cookies['csrf_token']
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> hit put route")
         if form.validate_on_submit():
-            print(
-                ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> form successfully validated")
             setattr(collection, 'name', form.data['name'])
             db.session.commit()
             return collection.to_dict()
