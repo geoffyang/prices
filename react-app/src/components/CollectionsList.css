@@ -22,3 +22,10 @@
     background-color: var(--blue);
     cursor: pointer;
 }
+
+#collection-form__edit-errors {
+    width: 80%;
+    font-size: rem;
+    margin-top: 1rem;
+    /* background-color: red; */
+}

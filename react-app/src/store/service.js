@@ -82,6 +82,14 @@ export const EditComment = ({ comment, id }) => async dispatch => {
     if (response.ok) {
         const editedComment = await response.json()
         dispatch(updateComment(editedComment))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        } else {
+            return ["An error occured, please try again"]
+        }
     }
 }
 
@@ -112,6 +120,7 @@ const initialState = {
     serviceLoaded: null,
     commentsLoaded: null,
     showErrors: false,
+    showEditErrors: false,
 }
 
 export default function reducer(state = initialState, { service, type, comment, id }) {
@@ -126,7 +135,8 @@ export default function reducer(state = initialState, { service, type, comment, 
                         }
                     },
                     serviceLoaded: true,
-                    commentsLoaded: true
+                    commentsLoaded: true,
+                    showEditErrors: state.showEditErrors,
                 }
             }
             return {
@@ -193,6 +203,24 @@ export default function reducer(state = initialState, { service, type, comment, 
                     comments: { ...state.currentServiceObj.comments }
                 },
                 showErrors: false,
+            }
+        case SHOW_EDIT_ERROR_BOX:
+            return {
+                ...state,
+                currentServiceObj: {
+                    ...state.currentServiceObj,
+                    comments: { ...state.currentServiceObj.comments }
+                },
+                showEditErrors: true,
+            }
+        case REMOVE_EDIT_ERROR_BOX:
+            return {
+                ...state,
+                currentServiceObj: {
+                    ...state.currentServiceObj,
+                    comments: { ...state.currentServiceObj.comments }
+                },
+                showEditErrors: false,
             }
         default:
             return state;

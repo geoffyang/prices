@@ -5,6 +5,8 @@ import { BsTrash, BsPencil } from 'react-icons/bs';
 import { GetCollections, GetServices, UnloadCollections, DeleteCollection, EditCollectionName } from "../store/collection"
 import { Modal } from '../context/Modal'
 import './CollectionsList.css'
+import { ShowEditErrorBox, RemoveEditErrorBox } from "../store/collection";
+
 
 export default function CollectionsList() {
     const dispatch = useDispatch();
@@ -13,8 +15,11 @@ export default function CollectionsList() {
     const [showModal, setShowModal] = useState(false);
     const [collectionId, setCollectionId] = useState("");
     const [collectionName, setCollectionName] = useState("")
+    const [errors, setErrors] = useState([])
 
     const allCollections = useSelector(state => state.collections.all)
+    const showEditErrors = useSelector(state => state.collections.showEditErrors)
+
 
     useEffect(() => {
         dispatch(GetCollections());
@@ -26,15 +31,22 @@ export default function CollectionsList() {
         dispatch(GetServices(id))
     }
 
-    const handleEdit = e => {
+    const handleEdit = async e => {
         e.preventDefault();
-        dispatch(EditCollectionName({
+        const data = await dispatch(EditCollectionName({
             name: collectionName,
             id: collectionId
         }))
-        setCollectionName("")
-        setCollectionId(null)
-        setShowModal(false)
+        if (data) {
+            setErrors(data);
+            dispatch(ShowEditErrorBox())
+        } else {
+            dispatch(RemoveEditErrorBox())
+            setCollectionName("")
+            setErrors([])
+            setCollectionId(null)
+            setShowModal(false)
+        }
     }
 
 
@@ -64,7 +76,12 @@ export default function CollectionsList() {
             ))}
 
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                <Modal onClose={() => {
+                    setShowModal(false)
+                    setErrors([])
+                    dispatch(RemoveEditErrorBox())
+                }
+                }>
                     <form onSubmit={handleEdit}>
                         <input
                             type='text'
@@ -74,7 +91,18 @@ export default function CollectionsList() {
                             onChange={({ target: { value } }) => setCollectionName(value)}
                             value={collectionName} />
                         <button type="submit">Edit</button>
+
                     </form>
+                    <div id="collection-form__edit-errors">
+                        {showEditErrors
+                            && (<div
+                                style={{ color: 'red' }}>
+                                {errors.map((err, ind) => (
+                                    <div key={ind}>{err}</div>
+                                ))}
+                            </div>)
+                        }
+                    </div>
                 </Modal>
             )}
 

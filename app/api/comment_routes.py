@@ -32,7 +32,6 @@ def deleteComment(id):
     elif request.method == 'PUT':
         form = NewComment()
         form['csrf_token'].data = request.cookies['csrf_token']
-        print(">>>>>>>>>>>>>>>>>>>>>>>put request", form.data)
         if form.validate_on_submit():
             setattr(comment, "comment", form.data['comment'])
             setattr(comment, "updated_at", datetime.utcnow())

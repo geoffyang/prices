@@ -4,7 +4,8 @@ import { BsTrash, BsPencil } from 'react-icons/bs';
 
 import { Modal } from '../context/Modal'
 import "./Comments.css"
-import { DeleteComment, EditComment } from "../store/service";
+import { DeleteComment, EditComment, ShowEditErrorBox, RemoveEditErrorBox } from "../store/service";
+
 
 
 export default function Comments() {
@@ -13,20 +14,28 @@ export default function Comments() {
     const [showModal, setShowModal] = useState(false);
     const [commentId, setCommentId] = useState("");
     const [comment, setComment] = useState("")
+    const [errors, setErrors] = useState([])
 
     const comments = useSelector(state => state.service.currentServiceObj.comments)
     const commentsLoaded = useSelector(state => state.service.commentsLoaded)
     const user = useSelector(state => state.session.user)
+    const showEditErrors = useSelector(state => state.service.showEditErrors)
 
-    const handleEdit = e => {
+    const handleEdit = async e => {
         e.preventDefault();
-        dispatch(EditComment({
+        const data = await dispatch(EditComment({
             comment: comment,
             id: commentId
         }))
-        setComment("")
-        setCommentId(null)
-        setShowModal(false)
+        if (data) {
+            setErrors(data)
+            dispatch(ShowEditErrorBox());
+        } else {
+            dispatch(RemoveEditErrorBox())
+            setComment("")
+            setCommentId(null)
+            setShowModal(false)
+        }
     }
 
     return (
@@ -83,6 +92,16 @@ export default function Comments() {
                             value={comment} />
                         <button type="submit">Edit</button>
                     </form>
+                    <div id="comment-form__edit-errors">
+                        {showEditErrors
+                            && (<div
+                                style={{ color: 'red' }}>
+                                {errors.map((err, ind) => (
+                                    <div key={ind}>{err}</div>
+                                ))}
+                            </div>)
+                        }
+                    </div>
                 </Modal>
             )}
 

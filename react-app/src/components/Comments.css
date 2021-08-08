@@ -38,3 +38,11 @@
     padding-right: 2rem;
     /* border: 1px solid black; */
 }
+
+#comment-form__edit-errors {
+    height: 80px;
+    margin-top: 1rem;
+    font-size: .75rem;
+    width: 100%;
+    /* background-color: salmon; */
+}

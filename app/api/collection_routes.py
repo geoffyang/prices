@@ -17,9 +17,8 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{error}')
     return errorMessages
 
+
 # GET POST /api/collections/
-
-
 @collection_routes.route('/', methods=['GET', 'POST'])
 @login_required
 def getCollections():
@@ -60,9 +59,15 @@ def getCollection(id):
         return {"deleted": id}
     elif request.method == 'PUT':
         form = NewCollection()
-        setattr(collection, 'name', form.data['name'])
-        db.session.commit()
-        return collection.to_dict()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> hit put route")
+        if form.validate_on_submit():
+            print(
+                ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> form successfully validated")
+            setattr(collection, 'name', form.data['name'])
+            db.session.commit()
+            return collection.to_dict()
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 #########################################

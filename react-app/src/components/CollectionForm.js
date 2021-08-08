@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { PostCollection, ShowErrorBox, RemoveErrorBox } from '../store/collection';
@@ -10,7 +10,7 @@ export default function CollectionForm() {
     const [errors, setErrors] = useState([])
     const [collectionName, setCollectionName] = useState("")
 
-    const showErrorBox = useSelector(state => state.collections.showErrors)
+    const showErrors = useSelector(state => state.collections.showErrors)
 
 
     const formSubmitFunc = async (e) => {
@@ -48,7 +48,7 @@ export default function CollectionForm() {
                 </div>
             </form>
 
-            {showErrorBox
+            {showErrors
                 ? (<div id="collection-form__errors"
                     style={{ color: 'red' }}>
                     {errors.map((err, ind) => (
