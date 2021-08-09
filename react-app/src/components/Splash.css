@@ -1,0 +1,75 @@
+.splash-panel {
+    /* border: 1px solid blanchedalmond; */
+}
+
+/************************************ p1 */
+
+#splash-p1 {
+    background-color: var(--gray);
+    color: white;
+    display: flex;
+    height: 450px;
+}
+
+#splash-p1__left {
+    /* background-color: white; */
+    margin-left: 2.5rem;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 7rem;
+    /* justify-content: space-around;
+    align-items: center; */
+}
+
+* {
+    /* border: 1px solid black; */
+}
+
+#splash__title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/********************/
+
+#splash-p1__right {
+    display: flex;
+    align-items: center;
+    padding-left: 2.5rem;
+    padding-top: 7rem;
+}
+
+#splash-p1__right>button {
+    width: 10rem;
+}
+
+/************************************ p2 */
+
+#splash-p2 {
+    display: flex;
+    align-items: center;
+    height: 250px;
+}
+
+#splash-p2__left {
+    font-size: 2rem;
+    margin-left: 2.5rem;
+    width: 60%;
+}
+
+/************************************ p3 */
+
+#splash-p3 {
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin-bottom: 4rem;
+}
+
+#splash-p3__left {
+    margin-left: 2.5rem;
+    display: flex;
+    flex-flow: row wrap;
+}
