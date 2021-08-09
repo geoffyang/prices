@@ -33,7 +33,7 @@ export default function Splash() {
         <div id="splash-p2" className="splash-panel">
             <div id="splash-p2__left">
                 <span id="splash__features-explanation">
-                    Explore the featured services below.
+                    Explore featured services below.
                 </span>
 
             </div>
@@ -47,16 +47,16 @@ export default function Splash() {
                     title="COVID-19?"
                     text="Explore testing and treatment options for COVID-19"
                     domain="Virology"
-                    link="xxx"
                     color="rgb(105, 147, 255)"
                     textColor="black"
                     learnMore="Learn More >"
+                    link="/subdomains/covid/"
                 />
                 <DomainPanel
                     title="Coming Soon"
-                    text="New pricing domains being built"
+                    text="New pricing categories coming soon"
                     domain="Coming Soon"
-                    link="xxx"
+                    link="/"
                     color="rgb(41,41,41,.2)"
                     textColor="rgb(41,41,41,.5"
                     learnMore=""
