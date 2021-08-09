@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 import DomainPanel from './DomainPanel'
 
@@ -6,6 +7,8 @@ import "./Splash.css"
 
 export default function Splash() {
     const history = useHistory();
+
+    const user = useSelector(state => state.session.user);
 
     return (<>
 
@@ -18,9 +21,12 @@ export default function Splash() {
                     View recent prices for hospital services and procedures.
                 </span>
             </div>
-            <div id="splash-p1__right">
-                <button onClick={() => history.push('/login')}>Learn More</button>
-            </div>
+            {(user === null) &&
+
+                (<div id="splash-p1__right">
+                    <button onClick={() => history.push('/login')}>Learn More</button>
+                </div>)
+            }
         </div>
 
 
