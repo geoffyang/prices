@@ -9,7 +9,7 @@ We provide pricing data on hospital services and procedures across the US, with 
 3. Back-end libraries: flask-cors, flask-sqlalchemy, flask-wtf, wtforms, flask-migrate, flask-login,
 4. Other: Heroku, Docker
 
-## Site Features
+## Application Features
 
 ### Services View
 
