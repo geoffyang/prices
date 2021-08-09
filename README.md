@@ -27,6 +27,7 @@ There is a comments section for each service to discuss quality of care and allo
 Users can save individual hospital services within collections to view aggregate price information. There are no limits to the number of collections a user can create.
 
 ### Database Schema
+![](https://github.com/geoffyang/prices/blob/main/react-app/public/hospital-prices-db.png?raw=true)
 
 ### Code Highlight - Best practice Redux use
 
