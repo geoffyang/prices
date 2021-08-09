@@ -18,6 +18,8 @@ Users are able to view details on any hospital procedure or service. Details inc
 2. List price for the service.
 3. Discounted prices recently paid by real patients.
 
+![](https://github.com/geoffyang/prices/blob/main/react-app/public/service-demo.png?raw=true)
+
 ### Comments
 
 There is a comments section for each service to discuss quality of care and allow for crowdsourced Q&A.
