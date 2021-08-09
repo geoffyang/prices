@@ -17,7 +17,7 @@ const NavBar = () => {
 
         <div id="nav__left">
 
-          <Link to='/mycollections' >
+          <Link to='/' >
             Hospital Prices
           </Link>
 
