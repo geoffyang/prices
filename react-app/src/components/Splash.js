@@ -50,6 +50,7 @@ export default function Splash() {
                     link="xxx"
                     color="rgb(105, 147, 255)"
                     textColor="black"
+                    learnMore="Learn More >"
                 />
                 <DomainPanel
                     title="Coming Soon"
@@ -58,6 +59,7 @@ export default function Splash() {
                     link="xxx"
                     color="rgb(41,41,41,.2)"
                     textColor="rgb(41,41,41,.5"
+                    learnMore=""
                 />
             </div>
         </div>

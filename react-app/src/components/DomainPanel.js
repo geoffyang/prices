@@ -1,6 +1,6 @@
 import "./DomainPanel.css"
 
-export default function DomainPanel({ domain, title, text, link, color, textColor }) {
+export default function DomainPanel({ domain, title, text, link, color, textColor, learnMore }) {
 
     return (<>
         <div id="domain-panel" style={{ "backgroundColor": color, color: textColor }}>
@@ -18,7 +18,7 @@ export default function DomainPanel({ domain, title, text, link, color, textColo
 
 
             <div id="domain-panel__bottom">
-                <span >Learn More {'>'}</span>
+                <span >{learnMore}</span>
             </div>
 
 

@@ -1,0 +1,18 @@
+#subdomain__container {
+    display: flex;
+    flex-direction: column;
+}
+
+#subdomain__list {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    margin-left: 2.5rem;
+    border: 1px solid red;
+}
+
+.subdomain__services {
+    height: 50px;
+    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+}

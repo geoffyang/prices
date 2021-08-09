@@ -13,7 +13,7 @@ import CommentsForm from "./CommentsForm"
 export default function ServicePage() {
     const dispatch = useDispatch();
 
-    let { id } = useParams()
+    const { id } = useParams()
     const s = useSelector(state => state.service.currentServiceObj)
     const serviceLoaded = useSelector(state => state.service.serviceLoaded)
 

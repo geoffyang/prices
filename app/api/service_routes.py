@@ -15,9 +15,8 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{error}')
     return errorMessages
 
+
 # GET DELETE /api/services/<id>/
-
-
 @service_routes.route("/<id>/", methods=['GET', 'DELETE'])
 @login_required
 def getService(id):
@@ -50,3 +49,14 @@ def addComment(service_id):
         db.session.commit()
         return new_comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+# GET /api/services/domains/<domain>/
+@service_routes.route("/subdomains/<subdomain>/")
+@login_required
+def getSubdomain(subdomain):
+    services = Service.query.filter_by(subdomain=subdomain).all()
+    print(">>>>>>>>>>>>>>>>>>>>", services[0].to_dict())
+    if len(services) > 0:
+        return {s.id: s.to_dict() for s in services}
+    return {}

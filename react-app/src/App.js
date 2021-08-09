@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import ServicePage from './components/ServicePage';
 import { authenticate } from './store/session';
 import CollectionsPage from './components/CollectionsPage';
+import SubdomainPage from './components/SubdomainPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,6 +57,10 @@ function App() {
 
         <ProtectedRoute path='/' exact={true} >
           <CollectionsPage />
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/subdomains/:subdomain' exact={true} >
+          <SubdomainPage />
         </ProtectedRoute>
 
         <ProtectedRoute exact path='/services/:id'>
