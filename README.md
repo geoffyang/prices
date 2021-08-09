@@ -1,6 +1,4 @@
-## https://hospital-prices.herokuapp.com
-
-## Welcome to hospital prices
+## Welcome to hospital prices https://hospital-prices.herokuapp.com
 
 We provide pricing data on hospital services and procedures across the US, with an interface to browse and save this data. Healthcare pricing is murky and this application hopes to bring transparency to our collective healthcare costs.
 
@@ -24,13 +22,13 @@ Users are able to view details on any hospital procedure or service. Details inc
 
 There is a comments section for each service to discuss quality of care and allow for crowdsourced Q&A.
 
-### Collections of Services
+### Service Collections
 
 Users can save individual hospital services within collections to view aggregate price information. There are no limits to the number of collections a user can create.
 
 ### Database Schema
 
-### Code Highlights
+### Code Highlight - Best practice Redux use
 
 This application leans heavily on centralized Redux stores for its rendering logic and fast performance. This design decision allows for the bare minimum of useEffect hooks to be used, minimizing the sprawl of logic being managed in disparate components.
 
