@@ -13,8 +13,8 @@ export default function Footer() {
 
             <div id="footer__right" className="service__right-column">
                 <a href="https://www.linkedin.com/in/geoffreyy">Linkedin</a>
-                <a href="https://www.github.com/geoffyang/prices"> Github</a>
-                <a href="https://www.github.com/geoffyang">Code Repo</a>
+                <a href="https://www.github.com/geoffyang"> Github</a>
+                <a href="https://www.github.com/geoffyang/prices">Code Repo</a>
             </div>
 
         </div>
