@@ -1,23 +1,24 @@
 from app.models import db, Collection
 
+
 def seed_collections():
-    c1=Collection(
+    c1 = Collection(
         name="First Collection",
         # service_id=1,
         user_id=1
     )
-    c2=Collection(
+    c2 = Collection(
         name="Second Collection",
         # service_id=2,
         user_id=1
     )
-    c3=Collection(
-        name="Gobbly",
+    c3 = Collection(
+        name="My 3rd Collection",
         # service_id=2,
         user_id=1
     )
-    c4=Collection(
-        name="Turkey",
+    c4 = Collection(
+        name="Fourth",
         # service_id=2,
         user_id=1
     )

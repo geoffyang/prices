@@ -1,9 +1,16 @@
+import { useHistory } from "react-router-dom";
+
 import "./DomainPanel.css"
 
-export default function DomainPanel({ domain, title, text, link, color, textColor }) {
+export default function DomainPanel({ domain, title, text, link, color, textColor, learnMore }) {
+
+    let history = useHistory()
 
     return (<>
-        <div id="domain-panel" style={{ "backgroundColor": color, color: textColor }}>
+        <div id="domain-panel"
+            style={{ "backgroundColor": color, color: textColor }}
+            onClick={() => history.push(link)}
+        >
 
 
             <div id="domain-panel__top">
@@ -18,7 +25,7 @@ export default function DomainPanel({ domain, title, text, link, color, textColo
 
 
             <div id="domain-panel__bottom">
-                <span >Learn More {'>'}</span>
+                <span >{learnMore}</span>
             </div>
 
 

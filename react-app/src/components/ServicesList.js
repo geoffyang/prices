@@ -26,8 +26,8 @@ export default function ServicesList() {
                     >
                         <span>{s.billing_code}</span>
                         <span>{s.service_description}</span>
-                        <span>${s.list_price}</span>
-                        <span>${s.discounted_price}</span>
+                        <span>${s.list_price.toFixed(2)}</span>
+                        <span>${s.discounted_price.toFixed(2)}</span>
                         <span><BsTrash onClick={(e) => {
                             e.stopPropagation()
                             dispatch(DeleteService(current, s.id))

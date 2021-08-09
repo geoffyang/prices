@@ -1,0 +1,30 @@
+#subdomain__container {
+    display: flex;
+    flex-direction: column;
+}
+
+#subdomain__list {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    /* border: 1px solid red; */
+}
+
+.subdomain__services {
+    height: 80px;
+    display: grid;
+    grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    font-weight: 500;
+}
+
+.subdomain__services:hover {
+    background-color: var(--yellow);
+}
+
+#subdomain__table-header {
+    /* border-bottom: 3px solid var(--blue); */
+    font-weight: 700;
+}

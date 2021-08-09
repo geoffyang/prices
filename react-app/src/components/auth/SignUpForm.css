@@ -23,8 +23,9 @@
 }
 
 #signup-errors {
-    border: 5px solid blue;
+    /* border: 5px solid blue; */
     width: 400px;
     margin-bottom: 2rem;
     color: red;
+    /* height: 10rem; */
 }

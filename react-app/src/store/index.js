@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import collections from './collection'
 import service from './service'
+import subdomain from './subdomain'
 
 const rootReducer = combineReducers({
   session,
   collections,
-  service
+  service,
+  subdomain,
 });
 
 
