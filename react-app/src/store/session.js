@@ -1,4 +1,3 @@
-// constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
@@ -98,7 +97,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
-export default function reducer(state = initialState, {type, user}) {
+export default function reducer(state = initialState, { type, user }) {
   switch (type) {
     case SET_USER:
       return {

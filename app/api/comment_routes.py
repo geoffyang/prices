@@ -9,7 +9,7 @@ comment_routes = Blueprint('comments', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     """
-    Simple function that turns the WTForms validation errors into a simple list
+    Turns the WTForms validation errors into a simple list
     """
     errorMessages = []
     for field in validation_errors:
@@ -38,10 +38,3 @@ def deleteComment(id):
             db.session.commit()
             return comment.to_dict()
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-        # alternate method
-        # form.populate_obj(comment)
-        # comment.updated_at = datetime.utcnow()
-        # db.session.add(comment)
-        # db.session.commit()
-        # return {"edited":id}
