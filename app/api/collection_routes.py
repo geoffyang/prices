@@ -45,7 +45,6 @@ def getCollections():
 
 
 # GET DELETE /api/collections/<id>/
-# is GET used?
 @collection_routes.route("/<id>/", methods=['GET', 'DELETE', 'PUT'])
 @login_required
 def getCollection(id):
