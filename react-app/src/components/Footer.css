@@ -9,8 +9,6 @@
     padding-top: 50px;
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
-    /* background-color: lightslategray; */
 }
 
 #footer__right>* {
@@ -18,8 +16,6 @@
     text-decoration: none;
     width: 160px;
     padding-right: 4rem;
-    /* background-color: salmon; */
-    /* border: 1px solid black; */
 }
 
 #footer__container *:hover {
@@ -30,7 +26,6 @@
     width: 20%;
     font-size: 30px;
     font-weight: 500;
-    /* background-color: salmon; */
     height: 100%;
     margin-left: 2.5rem;
     display: flex;
@@ -41,5 +36,4 @@
     width: 70%;
     display: flex;
     flex-flow: row wrap;
-    /* background-color: salmon; */
 }

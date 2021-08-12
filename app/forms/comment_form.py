@@ -8,4 +8,4 @@ class NewComment(FlaskForm):
         DataRequired(),
         Length(-1, 250, "Please keep the comment under 250 characters")
     ])
-    # submit = SubmitField()
+

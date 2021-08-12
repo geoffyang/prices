@@ -45,7 +45,6 @@ def getCollections():
 
 
 # GET DELETE /api/collections/<id>/
-# is GET used?
 @collection_routes.route("/<id>/", methods=['GET', 'DELETE', 'PUT'])
 @login_required
 def getCollection(id):
@@ -78,32 +77,6 @@ def getCollection(id):
 @collection_routes.route('/<collection_id>/services/')
 @login_required
 def getServicesInCollection(collection_id):
-
-    # working return 1
-    # return Collection.query.get(collection_id).to_dict()["services"]
-
-    # working return 2
-    # if request.method == 'GET':
-    #     rows = db.session.execute(
-    #     f"SELECT * FROM services FULL JOIN service_collections ON services.id=service_collections.service_id FULL JOIN collections ON  service_collections.collection_id=collections.id WHERE service_collections.collection_id={collection_id}").fetchall()
-
-    #     services = {row[0] : {
-    #             "id":row[0],
-    #             "billing_code":row[1],
-    #             "cpt_code":row[2],
-    #             "service_description":row[3],
-    #             "list_price":float(row[4]),
-    #             "discounted_price":float(row[5]),
-    #             "domain":row[6],
-    #             "subdomain":row[7],
-    #             "hospital_id":row[8],
-    #             "status":row[9],
-    #             "user_id":row[10]
-    #         } for row in rows}
-
-    #     return services
-
-    # working return 3
     collection = Collection.query.get(collection_id)
     service_collections = collection.services
     service_list = {service.id: service.to_dict()

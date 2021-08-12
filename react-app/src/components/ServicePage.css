@@ -2,8 +2,6 @@
     height: 44px;
     display: flex;
     align-items: center;
-    /* border-bottom: 1px solid lightgray; */
-    /* border-top: 1px solid lightgray; */
     margin-left: 2.5rem;
     font-weight: 300;
 }
@@ -19,8 +17,7 @@
     height: 80%;
     padding-top: 220px;
     margin-left: 2.5rem;
-    font-weight: 500
-    /* background-color: red; */
+    font-weight: 500;
 }
 
 #billing-code {
@@ -31,7 +28,6 @@
     width: 20%;
     font-size: 30px;
     font-weight: 500;
-    /* background-color: salmon; */
     height: 100%;
     margin-left: 2.5rem;
 }
@@ -39,21 +35,17 @@
 .service__middle-spacer {
     width: 10%;
     height: 100%;
-    /* background-color: lightcyan; */
 }
 
 .service__right-column {
     width: 70%;
     display: flex;
     flex-flow: row wrap;
-    /* background-color: salmon; */
 }
 
 .service-grid-stats {
     height: 70px;
     width: 350px;
-    /* background-color: slateblue; */
-    /* border: 1px solid black; */
     font-weight: 700;
 }
 
@@ -66,21 +58,16 @@
     min-height: 350px;
     display: flex;
     padding-top: 50px;
-    /* border-top: 1px solid lightgray; */
-    /* box-shadow: rgba(0, 0, 0, 0.02) 0px -12px 24px 0px, rgba(0, 0, 0, 0.06) 0px 12px 24px 0px, rgba(0, 0, 0, 0.02) 0px -12px 24px, rgba(0, 0, 0, 0.02) 0px 12px 24px; */
-    /* box-shadow: 0 4px 2px -24px gray; */
     border-bottom: 1px solid lightgray;
 }
 
 .values {
     font-weight: 400;
-    /* background-color: red; */
 }
 
 .labels {
     font-weight: 600;
     margin-left: 2.5rem;
-    /* background-color: springgreen; */
 }
 
 #service-description-code {
@@ -91,20 +78,13 @@
 #comments-vertical {
     display: flex;
     flex-direction: column;
-    /* border: 3px solid red; */
 }
 
 #comments-form {
     height: 80px;
     margin-right: 3rem;
-    /* background-color: lightsalmon; */
 }
-
-/* #comments-list {
-    background-color: limegreen;
-} */
 
 #service__comments {
     padding-bottom: 4rem;
-    /* border: 2px solid red; */
 }

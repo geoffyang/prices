@@ -12,13 +12,10 @@
 }
 
 .color {
-    /* background-color: rgb(244, 243, 224, 0.6); */
     border-right: 2px solid var(--yellow)
-    /* border-bottom: 1px solid rgb(192, 192, 192, 0.2); */
 }
 
 .text-time {
-    /* background-color: red; */
     width: 70%;
     max-width: 500px;
 }
@@ -26,7 +23,6 @@
 .comments__text {
     margin-bottom: 5px;
     overflow-wrap: break-word;
-    /* border: 1px solid black; */
 }
 
 .comments__time {
@@ -36,7 +32,6 @@
 
 .conditional-buttons {
     padding-right: 2rem;
-    /* border: 1px solid black; */
 }
 
 #comment-form__edit-errors {
@@ -44,5 +39,4 @@
     margin-top: 1rem;
     font-size: .75rem;
     width: 100%;
-    /* background-color: salmon; */
 }

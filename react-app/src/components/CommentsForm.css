@@ -1,24 +1,16 @@
 #comment-form-container {
     display: flex;
     width: 100%;
-    /* background-color: salmon; */
 }
 
 #comment-form-container>label {
     font-weight: 700;
 }
 
-/* #comment-form-container>input {
-} */
-
-/* #comment-form-container>button {
-} */
 
 #comment-form-errors {
     width: 100%;
     justify-content: flex-start;
-    /* background-color: blue; */
-    /* border: 5px solid blue; */
     font-size: .75rem;
     margin-top: 1rem;
     margin-bottom: 1rem;

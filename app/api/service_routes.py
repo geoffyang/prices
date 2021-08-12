@@ -20,7 +20,6 @@ def validation_errors_to_error_messages(validation_errors):
 @service_routes.route("/<id>/", methods=['GET', 'DELETE'])
 @login_required
 def getService(id):
-    # try:
     service = Service.query.filter_by(id=id).first()
     if request.method == 'GET':
         return service.to_dict()
@@ -28,8 +27,7 @@ def getService(id):
         db.session.delete(service)
         db.session.commit()
         return {"deleted": id}
-    # except:
-    # return {}
+
 
 
 # POST /api/services/<id>/comments/
@@ -38,7 +36,6 @@ def getService(id):
 def addComment(service_id):
     form = NewComment()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print("FORM DATA _______", form.data)
     if form.validate_on_submit():
         new_comment = Comment(
             service_id=service_id,
@@ -56,7 +53,6 @@ def addComment(service_id):
 @login_required
 def getSubdomain(subdomain):
     services = Service.query.filter_by(subdomain=subdomain).all()
-    print(">>>>>>>>>>>>>>>>>>>>", services[0].to_dict())
     if len(services) > 0:
         return {s.id: s.to_dict() for s in services}
     return {}
