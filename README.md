@@ -1,6 +1,6 @@
 ## Welcome to Hospital Prices https://hospital-prices.herokuapp.com
 
-We provide pricing data on hospital services and procedures across the US, with an interface to browse and save this data. Healthcare pricing is murky and this application hopes to bring transparency to our collective healthcare costs.
+New federal regulations in 2021 mandate that hosptials begin publishing price data for their services and procedures. Hospital Prices seeks to aggregate the pricing information into a fast and responsive data tool, bringing healthcare price transparency to consumers.
 
 ## Technologies Used
 
