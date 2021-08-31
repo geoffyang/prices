@@ -161,17 +161,17 @@ export default function reducer(state = initialState, { service, type, comment, 
 ## Installation Instructions
 
 1. Clone the repository and install python dependencies in the root folder. 
-  * pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+   * pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
 2. Create a database and place db credentials in a .env file that mirrors the included .env.example template
 3. Migrate, seed and run the database
-  * pipenv shell
-  * flask db upgrade
-  * flask seed all
-  * flask run
+   * pipenv shell
+   * flask db upgrade
+   * flask seed all
+   * flask run
 4. Install dependencies and start the front end
-  * Navigate to the React-App folder
-  * npm install
-  * npm start
+   * Navigate to the React-App folder
+   * npm install
+   * npm start
 
 ## Conclusion and Future Features
 
