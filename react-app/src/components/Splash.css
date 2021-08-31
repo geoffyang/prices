@@ -13,16 +13,21 @@
 
 #splash-p1__left {
     margin-left: 2.5rem;
-    width: 50%;
+    /* width: 50%; */
     display: flex;
     flex-direction: column;
-    padding-top: 15rem;
+    justify-content: flex-end;
+    padding-bottom: 3rem;
 }
 
 #splash__title {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+}
+
+.splash-image {
+    height: 100%;
 }
 
 /********************/

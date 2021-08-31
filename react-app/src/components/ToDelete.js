@@ -1,8 +1,5 @@
 function billFor(month, activeSubscription, users) {
-    // your code here!
 
-    // find daily rate
-    // how many days in this month
     const billForMonth = +month.slice(0, 4)
     const billForYear = +month.slice(5)
     const billForDate = new Date(billForYear, billForMonth, 1)
@@ -13,30 +10,28 @@ function billFor(month, activeSubscription, users) {
     let runningUserDays = 0;
 
     if (Object.keys(users).length > 0) { //check there are users
-
         while (billCalculationDay <= billEnd) {
-            const eachUser = users.forEach(u => {
+            users.map((u, i) => {
                 const firstDay = u.activatedOn;
                 const lastDay = u.deactivatedOn || billEnd;
 
-                if (billCalculationDay >= firstDay && billCalculationDay <= lastDay) {
+                if ((billCalculationDay >= firstDay) && (billCalculationDay <= lastDay)) {
                     runningUserDays += 1;
                 }
 
                 billCalculationDay = nextDay(billCalculationDay)
-
+                return null;
             })
         }
     }// while there are users
 
-    const rate = (activeSubscription?.monthlyPriceInDollars) / daysInMonth;
+    const rate = (activeSubscription.monthlyPriceInDollars) / daysInMonth;
     if (rate) {
         return (runningUserDays * rate).toFixed(2);
     }
 
 
 }
-
 
 
 

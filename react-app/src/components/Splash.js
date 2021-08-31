@@ -8,6 +8,30 @@ import "./Splash.css"
 export default function Splash() {
     const history = useHistory();
 
+    const panel1 = (<DomainPanel
+        title="COVID-19?"
+        text="Explore testing and treatment options for COVID-19"
+        domain="Virology"
+        color="rgb(105, 147, 255)"
+        textColor="black"
+        learnMore="Learn More >"
+        link="/subdomains/covid/"
+    />)
+
+    const panel2 = (<DomainPanel
+        title="Coming Soon"
+        text="New pricing categories coming soon"
+        domain="Coming Soon"
+        link="/"
+        color="rgb(41,41,41,.2)"
+        textColor="rgb(41,41,41,.5"
+        learnMore=""
+    />)
+
+    const displayArray = [
+        panel1, panel2
+    ]
+
     const user = useSelector(state => state.session.user);
 
     return (<>
@@ -21,12 +45,15 @@ export default function Splash() {
                     View recent prices for hospital services and procedures.
                 </span>
             </div>
-            {(user === null) &&
+            <div>
+                <img className="splash-image" src="/splash.jpg" alt="background texture" />
 
-                (<div id="splash-p1__right">
-                    <button onClick={() => history.push('/login')}>Learn More</button>
-                </div>)
-            }
+                {(user === null) &&
+                    (<div id="splash-p1__right">
+                        <button onClick={() => history.push('/login')}>Learn More</button>
+                    </div>)
+                }
+            </div>
         </div>
 
 
@@ -43,24 +70,9 @@ export default function Splash() {
         </div>
         <div id="splash-p3" className="splash-panel">
             <div id="splash-p3__left">
-                <DomainPanel
-                    title="COVID-19?"
-                    text="Explore testing and treatment options for COVID-19"
-                    domain="Virology"
-                    color="rgb(105, 147, 255)"
-                    textColor="black"
-                    learnMore="Learn More >"
-                    link="/subdomains/covid/"
-                />
-                <DomainPanel
-                    title="Coming Soon"
-                    text="New pricing categories coming soon"
-                    domain="Coming Soon"
-                    link="/"
-                    color="rgb(41,41,41,.2)"
-                    textColor="rgb(41,41,41,.5"
-                    learnMore=""
-                />
+
+                {displayArray}
+
             </div>
         </div>
 
