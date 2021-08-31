@@ -1,13 +1,16 @@
 ## Welcome to Hospital Prices https://hospital-prices.herokuapp.com
 
-New federal regulations in 2021 mandate that hosptials begin publishing price data for their services and procedures. Hospital Prices seeks to aggregate the pricing information into a fast and responsive data tool, bringing healthcare price transparency to consumers.
+New federal regulations enacted in 2021 have mandated that hosptials publicly publish price information on their services and procedures. Hospital Prices is a full stack web application that allows users to view and interact with this rich data set. Users can estimate the total cost of a complex procedure and compare pricing across local hospitals. Users can also discuss pricing via a comments section available on each individual healthcare service. The hope of this data tool is to promote transparency in consumer healthcare pricing.
 
 ## Technologies Used
 
-1. Front-end: React, Redux, JavaScript
-2. Back-end: Flask, Python, PostgreSQL
-3. Back-end libraries: flask-cors, flask-sqlalchemy, flask-wtf, wtforms, flask-migrate, flask-login,
-4. Other: Heroku, Docker
+1. Front-end: 
+** React, 
+3. Redux, 
+4. JavaScript
+5. Back-end: Flask, Python, PostgreSQL
+6. Back-end libraries: flask-cors, flask-sqlalchemy, flask-wtf, wtforms, flask-migrate, flask-login,
+7. Other: Heroku, Docker
 
 ## Application Features
 
