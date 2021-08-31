@@ -4,13 +4,16 @@ New federal regulations enacted in 2021 have mandated that hosptials publicly pu
 
 ## Technologies Used
 
-1. Front-end: 
-** React, 
-3. Redux, 
-4. JavaScript
-5. Back-end: Flask, Python, PostgreSQL
-6. Back-end libraries: flask-cors, flask-sqlalchemy, flask-wtf, wtforms, flask-migrate, flask-login,
-7. Other: Heroku, Docker
+1. Front-end (JavaScript)
+    * React - Speedy rendering and re-rendering of browser page elements
+    * Redux - Consolidated state management with thunks connecting to API endpoints 
+2. Back-end (Python)
+    * Flask - Server framework with libraries for session management, form validation, and more.
+    * SQLAlchemy - Class-oriented interface for relational mapping
+    * PostgreSQL - A battle-tested and proven RDBMS 
+3. Other 
+    * Docker - Container software providing consistent deployment environments
+    * Heroku - Hosting service capable of deploying Docker containers
 
 ## Application Features
 
@@ -169,7 +172,8 @@ export default function reducer(state = initialState, { service, type, comment, 
   * npm install
   * npm start
 
-## Future Features
+## Conclusion and Future Features
 
-Service discoverabilty features are in the development pipeline to allow users to search or browse different hospital services.
+I created this project to demonstrate what I could build in a two-week sprint, and also to create the basis of a data asset with real value for consumers. To flesh out the application, the next steps in the development plan are a search feature to aid discoverability of hospital services, as well as the ability to add these services to one's collections.
 
+However, the largest forseen effort is the acquisition of data. Since each hospital currently publishes its information in a non-standardized format, I will need to build data pipelines to extract information from each of the hundreds of hospitals in the US. Please reach out if you are interested in contributing to this project.
