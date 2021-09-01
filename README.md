@@ -175,6 +175,6 @@ export default function reducer(state = initialState, { service, type, comment, 
 
 ## Conclusion and Future Features
 
-I created this project to demonstrate what I could build in a two-week sprint, and also to create the basis of a data asset with real value for consumers. To flesh out the application, the next steps in the development plan are a search feature to aid discoverability of hospital services, as well as the ability to add these services to one's collections.
+I created this project to demonstrate what I could build in a two-week sprint and to create the basis of a data asset with real value for consumers. The next steps in the development plan is adding a search feature to aid discoverability of hospital services, as well as the ability to add these services to one's collections.
 
-However, the largest forseen effort is the acquisition of data. Since each hospital currently publishes its information in a non-standardized format, I will need to build data pipelines to extract information from each of the hundreds of hospitals in the US. Please reach out if you are interested in contributing to this project.
+The largest effort for this project will be the acquisition of data. Since each hospital currently publishes its information in a non-standardized format, I will need to build data pipelines to extract information from each of the hundreds of hospitals in the US. Please reach out if you are interested in contributing to this project.
