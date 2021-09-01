@@ -1,7 +1,7 @@
 ## Welcome to Hospital Prices
 https://hospital-prices.herokuapp.com
 
-New federal regulations enacted in 2021 mandate that hosptials publicly publish price information for their services and procedures. Hospital Prices is a full stack web application that allows users to view and interact with this rich data set. Users can estimate the total cost of a complex procedure and compare pricing across local hospitals. Users can also discuss pricing via a comments section available on each individual healthcare service. The hope for this data tool is to promote transparency in medical pricing and allowing people to make informed decisions about their healthcare.
+New federal regulations enacted in 2021 mandate that hospitals publicly publish price information for their services and procedures. Hospital Prices is a full stack web application that allows users to view and interact with this rich data set. Users can estimate the total cost of a complex procedure and compare pricing across local hospitals. Users can also discuss pricing via a comments section available on each individual healthcare service. The hope for this data tool is to promote transparency in medical pricing and allowing people to make informed decisions about their healthcare.
 
 ## Technologies Used
 
