@@ -45,14 +45,14 @@ export default function Splash() {
                     View recent prices for hospital services and procedures.
                 </span>
             </div>
-            <div>
-                <img className="splash-image" src="/splash.jpg" alt="background texture" />
+            <div style={{ position: 'relative' }}>
 
                 {(user === null) &&
                     (<div id="splash-p1__right">
-                        <button onClick={() => history.push('/login')}>Learn More</button>
+                        <button style={{ border: "4px solid white" }} onClick={() => history.push('/login')}>Learn More</button>
                     </div>)
                 }
+                <img className="splash-image" src="/splash.jpg" alt="background texture" />
             </div>
         </div>
 
