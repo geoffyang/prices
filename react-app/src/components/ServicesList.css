@@ -9,8 +9,10 @@
 
 .services-list:hover {
     background-color: var(--yellow);
+    cursor: pointer;
 }
 
 .blue:hover {
     background-color: var(--yellow);
+    cursor: pointer;
 }

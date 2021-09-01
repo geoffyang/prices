@@ -1,3 +1,9 @@
+#splash-container {
+    display: flex;
+    flex-direction: column;
+    /* min-height: 88vh; */
+}
+
 .splash-panel {
     /* border: 1px solid blanchedalmond; */
 }
@@ -5,7 +11,7 @@
 /************************************ p1 */
 
 #splash-p1 {
-    background-color: var(--gray);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(splash.jpg) center/cover;
     color: white;
     display: flex;
     height: 450px;
@@ -13,11 +19,12 @@
 
 #splash-p1__left {
     margin-left: 2.5rem;
-    /* width: 50%; */
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 5rem;
+    padding-right: 1rem;
 }
 
 #splash__title {
@@ -28,17 +35,16 @@
 
 .splash-image {
     height: 100%;
+    filter: brightness(0.3)
 }
-
-/********************/
 
 #splash-p1__right {
     display: flex;
     align-items: center;
     position: absolute;
-    /* padding-top: 5.5rem; */
     bottom: 5rem;
-    left: 5rem;
+    left: 2rem;
+    z-index: 1;
 }
 
 #splash-p1__right>button {
@@ -49,14 +55,30 @@
 
 #splash-p2 {
     display: flex;
-    align-items: center;
-    height: 250px;
+    height: 350px;
+    padding-top: 4rem;
+    border-bottom: 1px solid lightgray;
 }
 
 #splash-p2__left {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 2rem;
     margin-left: 2.5rem;
+    width: 30%;
+    height: 100%;
+    padding-top: 2rem;
+}
+
+#splash-p2__right {
+    display: flex;
+    height: 100%;
     width: 60%;
+    padding-top: 2rem;
+    padding-left: 5rem;
+    line-height: 2rem;
+    color: rgb(41, 41, 41);
+    font-weight: 300;
 }
 
 /************************************ p3 */
@@ -64,11 +86,25 @@
 #splash-p3 {
     display: flex;
     align-items: center;
+    height: 150px;
+}
+
+#splash-p3__left {
+    font-size: 2rem;
+    margin-left: 2.5rem;
+    width: 60%;
+}
+
+/************************************ p4 */
+
+#splash-p4 {
+    display: flex;
+    align-items: center;
     height: auto;
     margin-bottom: 4rem;
 }
 
-#splash-p3__left {
+#splash-p4__left {
     margin-left: 2.5rem;
     display: flex;
     flex-flow: row wrap;
