@@ -1,13 +1,15 @@
 import "./Footer.css"
 
+
 export default function Footer() {
 
     return (
         <div id='footer__container'>
 
             <div id="footer__left">
-                Made by <br />Geoffrey Yang
+                <a href='https://geoffyang.github.io'>Made by<br /> Geoffrey Yang </a>
             </div>
+
 
             <div className="service__middle-spacer"> </div>
 
@@ -17,7 +19,8 @@ export default function Footer() {
                 <a href="https://www.github.com/geoffyang/prices">Code Repo</a>
             </div>
 
-        </div>
+
+        </div >
     )
 }
 

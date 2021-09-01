@@ -21,6 +21,7 @@
 
 .subdomain__services:hover {
     background-color: var(--yellow);
+    cursor: pointer;
 }
 
 #subdomain__table-header {

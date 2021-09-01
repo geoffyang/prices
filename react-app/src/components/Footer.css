@@ -1,8 +1,25 @@
+/* html {
+    height: 100%;
+} */
+
+#root {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 180px;
+}
+
 #footer__container {
     display: flex;
     background-color: var(--gray);
-    height: 300px;
+    height: 180px;
     color: white;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#footer__left>* {
+    text-decoration: none;
 }
 
 #footer__right {
@@ -20,6 +37,7 @@
 
 #footer__container *:hover {
     color: lightblue;
+    cursor: pointer;
 }
 
 #footer__left {
