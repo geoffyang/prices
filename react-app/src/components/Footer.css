@@ -35,8 +35,13 @@
     padding-right: 4rem;
 }
 
+#footer__right>*:hover {
+    font-weight: 800;
+    font-size: .9rem;
+}
+
 #footer__container *:hover {
-    color: lightblue;
+    color: rgb(143, 142, 142);
     cursor: pointer;
 }
 
