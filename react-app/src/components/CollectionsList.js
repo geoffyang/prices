@@ -80,16 +80,19 @@ export default function CollectionsList() {
                     setShowModal(false)
                     setErrors([])
                     dispatch(RemoveEditErrorBox())
-                }
-                }>
+                }}>
                     <form onSubmit={handleEdit}>
-                        <input
-                            type='text'
-                            name='Edit Collection Name'
-                            autoFocus
-                            autoComplete='off'
-                            onChange={({ target: { value } }) => setCollectionName(value)}
-                            value={collectionName} />
+                        <label style={{ color: 'white' }}>Edit Collection Name
+                            <input
+                                type='text'
+                                name='Edit Collection Name'
+                                autoFocus
+                                autoComplete='off'
+                                onChange={({ target: { value } }) => setCollectionName(value)}
+                                value={collectionName}
+
+                            />
+                        </label>
                         <button type="submit">Edit</button>
 
                     </form>
@@ -104,7 +107,8 @@ export default function CollectionsList() {
                         }
                     </div>
                 </Modal>
-            )}
+            )
+            }
 
         </>
     )

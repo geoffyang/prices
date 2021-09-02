@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Collection, service_collections
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -68,6 +68,15 @@ def sign_up():
             password=form.data['password']
         )
         db.session.add(user)
+        db.session.commit()
+        starterCollection = Collection(
+            name="My first collection",
+            user_id=user.id
+        )
+        db.session.add(starterCollection)
+        db.session.commit()
+        db.session.execute(service_collections.insert().values(
+            service_id=1, collection_id=starterCollection.id))
         db.session.commit()
         login_user(user)
         return user.to_dict()

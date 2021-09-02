@@ -25,7 +25,7 @@ export default function Splash() {
 
                 {(user === null) &&
                     (<div id="splash-p1__right">
-                        <button style={{ border: "1px solid white" }} onClick={() => history.push('/login')}>Learn More</button>
+                        <button style={{ border: "1px solid white" }} onClick={() => history.push('/login')}>Sign In</button>
                     </div>)
                 }
             </div>

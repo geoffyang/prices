@@ -64,7 +64,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div className="signup-label">
-        <label >Email (optional)</label>
+        <label >Email</label>
         <input
           type='text'
           name='email'

@@ -7,6 +7,7 @@ from app.models import User
 def user_exists(form, field):
     # Checking if user exists
     email = field.data
+    # if len(email > 0):
     user = User.query.filter(User.email == email).first()
     if user:
         raise ValidationError('Email address is already in use.')
@@ -33,5 +34,5 @@ class SignUpForm(FlaskForm):
 
     password = StringField('password', validators=[
         DataRequired(),
-        Length(10, -1, "Password needs to be 10 characters")
+        Length(10, -1, "Password needs to be 10 characters or longer.")
     ])

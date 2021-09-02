@@ -92,14 +92,17 @@ export default function Comments() {
                     setErrors([])
                 }}>
                     <form onSubmit={handleEdit} style={{ width: "100%" }}>
-                        <input
-                            type='text'
-                            name='Edit Comment'
-                            autoFocus
-                            autoComplete='off'
-                            onChange={({ target: { value } }) => setComment(value)}
-                            value={comment} />
+                        <label style={{ color: 'white' }}>Edit Comment
+                            <input
+                                type='text'
+                                name='Edit Comment'
+                                autoFocus
+                                autoComplete='off'
+                                onChange={({ target: { value } }) => setComment(value)}
+                                value={comment} />
+                        </label>
                         <button type="submit">Edit</button>
+
                     </form>
                     <div id="comment-form__edit-errors">
                         {showEditErrors

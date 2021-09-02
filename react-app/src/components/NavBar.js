@@ -29,7 +29,7 @@ const NavBar = () => {
             (
               <>
                 <div className="nav__button">
-                  <Link to='/mycollections' >
+                  <Link className="nav__button" to='/mycollections' >
                     Collections
                   </Link>
                 </div>
@@ -49,12 +49,12 @@ const NavBar = () => {
 
           {(user === null) &&
             (<><div className="nav__button">
-              <Link to='/login' >
+              <Link className="nav__button" to='/login' >
                 Login
               </Link>
             </div>
               <div className="nav__button">
-                <Link to='/sign-up' >
+                <Link className="nav__button" to='/sign-up' >
                   Sign Up
                 </Link>
               </div></>)}
