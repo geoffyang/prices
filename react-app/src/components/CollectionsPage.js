@@ -32,7 +32,7 @@ export default function CollectionsPage() {
 
                     {collectionLoaded
                         ? (<div>
-                            <div className="collection__header">{all[collectionId].name} </div>
+                            <div className="collection__header">{all[collectionId]?.name} </div>
                             <ServicesList />
                         </div>
                         )

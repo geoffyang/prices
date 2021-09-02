@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import { login } from "../../store/session"
+import './DemoButton.css'
 
 export default function DemoButton() {
     const dispatch = useDispatch()
@@ -10,7 +11,7 @@ export default function DemoButton() {
     }
 
     return (
-        <button id="demo-user-button" onClick={loginDemoUser} style={{ backgroundColor: "blueviolet", color: "white" }}>
+        <button id="demo-user-button" onClick={loginDemoUser} >
             Demo User
         </button>)
 }

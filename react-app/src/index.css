@@ -47,3 +47,9 @@ button {
     padding: 0 1rem 0 1rem;
     border-radius: 5px;
 }
+
+button:hover {
+    cursor: pointer;
+    background: black;
+    color: white;
+}

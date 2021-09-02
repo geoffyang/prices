@@ -59,3 +59,10 @@
     font-weight: 200;
     color: var(--gray);
 }
+
+.nav__button:hover {
+    font-weight: 700;
+    /* font-size: 4rem; */
+    color: rgb(109, 23, 109);
+    cursor: pointer;
+}
