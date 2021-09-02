@@ -11,7 +11,7 @@
 /************************************ p1 */
 
 #splash-p1 {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(splash.jpg) center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url(splash.jpg) center/cover;
     color: white;
     display: flex;
     height: 450px;
